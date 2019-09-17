@@ -8,25 +8,41 @@
 
 import UIKit
 
+protocol StartViewControllerDelegate: AnyObject {
+    func startGame()
+}
 final class StartViewController: UIViewController {
 
     private var customView: StartView
     private var viewModel: StartViewModel
 
-    init() {
+    weak var cordinator: StartViewControllerDelegate?
+
+    init(cordinator: StartViewControllerDelegate) {
 
         self.customView = StartView()
         self.viewModel = StartViewModel()
+
+        self.cordinator = cordinator
 
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func loadView() {
+        self.view = customView
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        customView.playButton.addTarget(self, action: #selector(didTapPlayButton), for: .touchUpInside)
+    }
+
+    @objc func didTapPlayButton() {
+        cordinator?.startGame()
+    }
 
 }
 
