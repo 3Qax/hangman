@@ -119,6 +119,7 @@ final class GameView: UIView {
         label.font = UIFont(name: UIFont.allerDisplayName, size: 60)
         label.textAlignment = .center
         label.textColor = UIColor.defaultPurple
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
 
@@ -135,7 +136,7 @@ final class GameView: UIView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .center
-        stackView.spacing = 8
+        stackView.spacing = 6
         return stackView
     }()
     let letterAButton: UIButton = {
@@ -443,9 +444,10 @@ final class GameView: UIView {
 
         self.addSubview(verticalKeyboardStack)
         verticalKeyboardStack.translatesAutoresizingMaskIntoConstraints = false
-        verticalKeyboardStack.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        verticalKeyboardStack.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        verticalKeyboardStack.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        verticalKeyboardStack.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
+        verticalKeyboardStack.bottomAnchor.constraint(greaterThanOrEqualTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
+        verticalKeyboardStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
+        verticalKeyboardStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
         verticalKeyboardStack.addArrangedSubview(firstRowOfKeyboard)
         verticalKeyboardStack.addArrangedSubview(secondRowOfKeyboard)
         verticalKeyboardStack.addArrangedSubview(thirdRowOfKeyboard)
@@ -484,7 +486,7 @@ final class GameView: UIView {
         wordLabel.translatesAutoresizingMaskIntoConstraints = false
         wordLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
         wordLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
-        wordLabel.bottomAnchor.constraint(equalTo: verticalKeyboardStack.topAnchor, constant: -40).isActive = true
+        wordLabel.bottomAnchor.constraint(equalTo: verticalKeyboardStack.topAnchor, constant: -20).isActive = true
         
 
     }

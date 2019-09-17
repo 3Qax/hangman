@@ -8,7 +8,15 @@
 
 import Foundation
 
+protocol GameViewModelDelegate: AnyObject {
+    func didGuessIncorrectly()
+    func didGuessCorrectly()
+    func gameOver()
+}
+
 final class GameViewModel {
+
+    public weak var delegate: GameViewModelDelegate?
 
     private(set) var isHeadVisible = Bindable<Bool>(false)
     private(set) var isNeckVisible = Bindable<Bool>(false)
@@ -25,12 +33,11 @@ final class GameViewModel {
     private(set) var maskedWord = Bindable<String>("")
     private(set) var guessedLetters = Set<Character>()
 
-
+    private var numberOfIncorrectGuesses = 0 { didSet { calculateFolkVisibility() }}
     private let model: GameModel
 
     init(model: GameModel) {
         self.model = model
-
         self.maskedWord = Bindable<String>(updatingMasking())
     }
 
@@ -40,6 +47,13 @@ final class GameViewModel {
         guard !guessedLetters.contains(letterToBeGuessed) else {
             assert(false, "Letter to be guessed has already been guessed!")
             return
+        }
+
+        if model.word.contains(letterToBeGuessed) {
+            delegate?.didGuessCorrectly()
+        } else {
+            numberOfIncorrectGuesses += 1
+            delegate?.didGuessIncorrectly()
         }
 
         guessedLetters.insert(letterToBeGuessed)
@@ -82,6 +96,46 @@ final class GameViewModel {
 
         return updatedWord
 
+    }
+
+    private func calculateFolkVisibility() {
+        switch numberOfIncorrectGuesses {
+        case 11:
+            isRightFootVisible.value = true
+            fallthrough
+        case 10:
+            isLeftFootVisible.value = true
+            fallthrough
+        case 9:
+            isRightLegVisible.value = true
+            fallthrough
+        case 8:
+            isLeftLegVisible.value = true
+            fallthrough
+        case 7:
+            isRightHandVisible.value = true
+            fallthrough
+        case 6:
+            isLeftHandVisible.value = true
+            fallthrough
+        case 5:
+            isRightArmVisible.value = true
+            fallthrough
+        case 4:
+            isLeftArmVisible.value = true
+            fallthrough
+        case 3:
+            isCorpusVisible.value = true
+            fallthrough
+        case 2:
+            isNeckVisible.value = true
+            fallthrough
+        case 1:
+            isHeadVisible.value = true
+        default:
+            assert(false, "Unsupported number of incorrect guesses!")
+            return
+        }
     }
 
     

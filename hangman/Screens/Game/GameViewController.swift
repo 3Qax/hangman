@@ -17,6 +17,8 @@ final class GameViewController: UIViewController {
     private let customView: GameView
     private let viewModel: GameViewModel
 
+    lazy var notificationFeedbackGenerator = UINotificationFeedbackGenerator()
+
     weak var cordinator: GameViewControllerDelegate?
 
     init(gameModel: GameModel, cordinator: GameViewControllerDelegate) {
@@ -27,6 +29,8 @@ final class GameViewController: UIViewController {
         self.cordinator = cordinator
 
         super.init(nibName: nil, bundle: nil)
+
+        self.viewModel.delegate = self
 
         customView.letterAButton.addTarget(self, action: #selector(didTapLetter(sender:)), for: .touchUpInside)
         customView.letterBButton.addTarget(self, action: #selector(didTapLetter(sender:)), for: .touchUpInside)
@@ -106,5 +110,21 @@ final class GameViewController: UIViewController {
         viewModel.guess(letter: sender.titleLabel!.text!.first!)
     }
 
+
+}
+
+extension GameViewController: GameViewModelDelegate {
+
+    func didGuessIncorrectly() {
+        notificationFeedbackGenerator.notificationOccurred(.warning)
+    }
+
+    func didGuessCorrectly() {
+        notificationFeedbackGenerator.notificationOccurred(.success)
+    }
+
+    func gameOver() {
+
+    }
 
 }
