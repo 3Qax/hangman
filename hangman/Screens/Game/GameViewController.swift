@@ -12,6 +12,7 @@ protocol GameViewControllerDelegate: AnyObject {
     func didWinGame()
     func didLoseGame()
 }
+
 final class GameViewController: UIViewController {
 
     private let customView: GameView
@@ -108,6 +109,8 @@ final class GameViewController: UIViewController {
 
     @objc func didTapLetter(sender: UIButton) {
         viewModel.guess(letter: sender.titleLabel!.text!.first!)
+        sender.isEnabled = false
+        sender.alpha = 0.3
     }
 
 
