@@ -26,6 +26,9 @@ final class StartViewController: UIViewController {
         self.cordinator = cordinator
 
         super.init(nibName: nil, bundle: nil)
+
+        customView.playButton.addTarget(self, action: #selector(didTapPlayButton), for: .touchUpInside)
+        customView.useRandomWordSwitch.addTarget(self, action: #selector(didSwitchUsingRandomWord(sender:)), for: .valueChanged)
     }
 
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -37,11 +40,23 @@ final class StartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        customView.playButton.addTarget(self, action: #selector(didTapPlayButton), for: .touchUpInside)
+        viewModel.useRandomWord.bind({ useRandomWord in
+            self.customView.useRandomWordLabelBottomToTopOfCustomWordTextField?.isActive = !useRandomWord
+            self.customView.useRandomWordLabelBottomToTopOfPlayButtonConstraint?.isActive = useRandomWord
+            self.customView.customWordTextField.isHidden = useRandomWord
+        })
     }
 
     @objc func didTapPlayButton() {
         cordinator?.startGame()
+    }
+
+    @objc func didSwitchGameDifficulty() {
+
+    }
+
+    @objc func didSwitchUsingRandomWord(sender: UISwitch) {
+        viewModel.useRandomWord.value = sender.isOn
     }
 
 }

@@ -32,6 +32,28 @@ final class StartView: UIView {
         return imageView
 
     }()
+    let useRandomWordLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: UIFont.allerDisplayName, size: 28)
+        label.text = "RANDOM WORD"
+        label.textColor = UIColor.defaultYellow
+        return label
+    }()
+    let useRandomWordSwitch: UISwitch = {
+        let swt = UISwitch()
+        swt.onTintColor = UIColor.defaultYellow
+        swt.isOn = true
+        return swt
+    }()
+    let customWordTextField: UITextField = {
+        let textField = UITextField()
+        textField.backgroundColor = UIColor.defaultBackground
+        textField.borderStyle = .roundedRect
+        textField.layer.borderColor = UIColor.defaultText.cgColor
+        textField.textColor = .defaultPurple
+        textField.placeholder = "Word to guess"
+        return textField
+    }()
     let playButton: UIButton = {
         var button = UIButton()
         button.backgroundColor = UIColor.defaultYellow
@@ -41,6 +63,9 @@ final class StartView: UIView {
         button.layer.cornerRadius = 25
         return button
     }()
+
+    var useRandomWordLabelBottomToTopOfPlayButtonConstraint: NSLayoutConstraint?
+    var useRandomWordLabelBottomToTopOfCustomWordTextField: NSLayoutConstraint?
 
 
     init() {
@@ -72,7 +97,23 @@ final class StartView: UIView {
         playButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
         playButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
 
+        self.addSubview(useRandomWordLabel)
+        useRandomWordLabel.translatesAutoresizingMaskIntoConstraints = false
+        useRandomWordLabel.leadingAnchor.constraint(equalTo: playButton.leadingAnchor, constant: 15).isActive = true
+        useRandomWordLabelBottomToTopOfPlayButtonConstraint = useRandomWordLabel.bottomAnchor.constraint(equalTo: playButton.topAnchor, constant: -10)
 
+        self.addSubview(useRandomWordSwitch)
+        useRandomWordSwitch.translatesAutoresizingMaskIntoConstraints = false
+        useRandomWordSwitch.trailingAnchor.constraint(equalTo: playButton.trailingAnchor, constant: -5).isActive = true
+        useRandomWordSwitch.centerYAnchor.constraint(equalTo: useRandomWordLabel.centerYAnchor).isActive = true
+
+        self.addSubview(customWordTextField)
+        customWordTextField.translatesAutoresizingMaskIntoConstraints = false
+        customWordTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+        customWordTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
+        customWordTextField.bottomAnchor.constraint(equalTo: playButton.topAnchor, constant: -10).isActive = true
+
+        useRandomWordLabelBottomToTopOfCustomWordTextField = useRandomWordLabel.bottomAnchor.constraint(equalTo: customWordTextField.topAnchor, constant: -10)
 
     }
 

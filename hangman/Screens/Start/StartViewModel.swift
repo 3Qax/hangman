@@ -11,4 +11,7 @@ import Foundation
 
 final class StartViewModel {
 
+    var isEasyModeOn = Bindable(true)
+    var useRandomWord = Bindable(true)
+
 }
