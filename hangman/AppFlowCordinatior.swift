@@ -30,8 +30,9 @@ final class AppFlowCordinatior: Coordinatior {
 
 extension AppFlowCordinatior: StartViewControllerDelegate {
 
-    func startGame() {
-        let gameViewController = GameViewController(gameModel: GameModel(word: "TEST"),cordinator: self)
+    func startGame(word: String) {
+        let gameViewController = GameViewController(gameModel: GameModel(originalWord: word),
+                                                    cordinator: self)
         navigationController?.pushViewController(gameViewController, animated: true)
     }
 

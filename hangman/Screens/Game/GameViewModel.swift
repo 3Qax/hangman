@@ -7,136 +7,117 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
-protocol GameViewModelDelegate: AnyObject {
-    func didGuessIncorrectly()
-    func didGuessCorrectly()
-    func gameOver()
-}
+
 
 final class GameViewModel {
 
-    public weak var delegate: GameViewModelDelegate?
+    public let isHeadVisible = BehaviorRelay<Bool>(value: false)
+    public let isNeckVisible = BehaviorRelay<Bool>(value: false)
+    public let isCorpusVisible = BehaviorRelay<Bool>(value: false)
+    public let isLeftArmVisible = BehaviorRelay<Bool>(value: false)
+    public let isRightArmVisible = BehaviorRelay<Bool>(value: false)
+    public let isLeftHandVisible = BehaviorRelay<Bool>(value: false)
+    public let isRightHandVisible = BehaviorRelay<Bool>(value: false)
+    public let isLeftLegVisible = BehaviorRelay<Bool>(value: false)
+    public let isRightLegVisible = BehaviorRelay<Bool>(value: false)
+    public let isLeftFootVisible = BehaviorRelay<Bool>(value: false)
+    public let isRightFootVisible = BehaviorRelay<Bool>(value: false)
 
-    private(set) var isHeadVisible = Bindable<Bool>(false)
-    private(set) var isNeckVisible = Bindable<Bool>(false)
-    private(set) var isCorpusVisible = Bindable<Bool>(false)
-    private(set) var isLeftArmVisible = Bindable<Bool>(false)
-    private(set) var isRightArmVisible = Bindable<Bool>(false)
-    private(set) var isLeftHandVisible = Bindable<Bool>(false)
-    private(set) var isRightHandVisible = Bindable<Bool>(false)
-    private(set) var isLeftLegVisible = Bindable<Bool>(false)
-    private(set) var isRightLegVisible = Bindable<Bool>(false)
-    private(set) var isLeftFootVisible = Bindable<Bool>(false)
-    private(set) var isRightFootVisible = Bindable<Bool>(false)
+    // masked out word which player is trying to guess
+    public let maskedWord: BehaviorRelay<String>
 
-    private(set) var maskedWord = Bindable<String>("")
-    private(set) var guessedLetters = Set<Character>()
+    // set of letters to display as already guessed
+    public let guessedLetters = BehaviorRelay<Set<Character>>(value: Set())
 
-    private var numberOfIncorrectGuesses = 0 { didSet { calculateFolkVisibility() }}
+    public let numberOfGuesses = BehaviorRelay<Int>(value: 0)
+    public let numberOfIncorrectGuesses = BehaviorRelay<Int>(value: 0)
+
+//    public let gameResult = Single<Void>
+
+    // MARK: - INTERNAL LOGIC VARIABLES
+
+    // representation of game
+    // onNext events are guesses, onCompletion is win, onError is lose
+    private let game = PublishSubject<Character>()
+
     private let model: GameModel
+    private let disposableBag = DisposeBag()
 
     init(model: GameModel) {
         self.model = model
-        self.maskedWord = Bindable<String>(updatingMasking())
+
+        let initialMask = String(model.originalWord.map({ return !$0.isWhitespace ? "_" : $0}))
+        self.maskedWord = BehaviorRelay<String>(value: initialMask)
+
+        // react to new guesses
+        game.subscribe(onNext: { [unowned self] (newLetter: Character) in
+
+            // FIXME: fix these two line piece of garbage
+            let tmpSet: Set<Character> = [newLetter]
+            self.guessedLetters.accept(self.guessedLetters.value.union(tmpSet))
+
+            var updatedWord = model.originalWord
+
+            // for each uniqe letter in String
+            Set(model.originalWord).forEach({ letter in
+                // if the guessedLetters doesn't contain a particular letter
+                if !self.guessedLetters.value.contains(letter) && !letter.isWhitespace {
+                    // replace all it occurances with underscore
+                    updatedWord = updatedWord.replacingOccurrences(of: String(letter), with: "_")
+                }
+
+            })
+
+            self.maskedWord.accept(updatedWord)
+
+        }).disposed(by: disposableBag)
+
+        // update folk visablity according to number of incorrect guesses
+        numberOfIncorrectGuesses.subscribe(onNext: { [unowned self] number in
+            if number >= 11 { self.isRightFootVisible.accept(true) }
+            if number >= 10 { self.isLeftFootVisible.accept(true) }
+            if number >= 9 { self.isRightLegVisible.accept(true) }
+            if number >= 8 { self.isLeftLegVisible.accept(true) }
+            if number >= 7 { self.isRightHandVisible.accept(true) }
+            if number >= 6 { self.isLeftHandVisible.accept(true) }
+            if number >= 5 { self.isRightArmVisible.accept(true) }
+            if number >= 4 { self.isLeftArmVisible.accept(true) }
+            if number >= 3 { self.isCorpusVisible.accept(true) }
+            if number >= 2 { self.isNeckVisible.accept(true) }
+            if number >= 1 { self.isHeadVisible.accept(true) }
+        }).disposed(by: disposableBag)
+
     }
 
-    public func guess(letter letterToBeGuessed: Character) {
+    /// Guess a letter by calling this function
+    /// - Parameter letter: a letter to be guessed
+    /// - Returns: Bool indicating wether a guess was corrcect or not
+    public func guess(letter: Character) -> Bool {
+
+        numberOfGuesses.accept(numberOfGuesses.value + 1)
+
+        guard isCorrectGuess(letter) else {
+            numberOfIncorrectGuesses.accept(numberOfIncorrectGuesses.value + 1)
+            return false
+        }
+
+        game.onNext(letter)
+        return true
+
+    }
+
+    /// Checks wether letter is correct guess
+    private func isCorrectGuess(_ letterToBeGuessed: Character) -> Bool {
 
         // make sure that the letter hasn't been already guessed
-        guard !guessedLetters.contains(letterToBeGuessed) else {
-            assert(false, "Letter to be guessed has already been guessed!")
-            return
-        }
+        guard !guessedLetters.value.contains(letterToBeGuessed) else { return false }
 
-        if model.word.contains(letterToBeGuessed) {
-            delegate?.didGuessCorrectly()
-        } else {
-            numberOfIncorrectGuesses += 1
-            delegate?.didGuessIncorrectly()
-        }
-
-        guessedLetters.insert(letterToBeGuessed)
-
-        updateMasking()
+        // if the original word contains that letter it's a correct guess
+        return model.originalWord.contains(letterToBeGuessed)
 
     }
-
-    private func updateMasking() {
-
-        var updatedWord = model.word
-
-        // for each uniqe letter in String
-        Set(model.word).forEach({ letter in
-            // if the guessedLetters doesn't contain a particular letter
-            if !guessedLetters.contains(letter) && !letter.isWhitespace {
-                // replace all it occurances with underscore
-                updatedWord = updatedWord.replacingOccurrences(of: String(letter), with: "_")
-            }
-
-        })
-
-        maskedWord.value = updatedWord
-
-    }
-
-    private func updatingMasking() -> String {
-
-        var updatedWord = model.word
-
-        // for each uniqe letter in String
-        Set(model.word).forEach({ letter in
-            // if the guessedLetters doesn't contain a particular letter
-            if !guessedLetters.contains(letter) && !letter.isWhitespace {
-                // replace all it occurances with underscore
-                updatedWord = updatedWord.replacingOccurrences(of: String(letter), with: "_")
-            }
-
-        })
-
-        return updatedWord
-
-    }
-
-    private func calculateFolkVisibility() {
-        switch numberOfIncorrectGuesses {
-        case 11:
-            isRightFootVisible.value = true
-            fallthrough
-        case 10:
-            isLeftFootVisible.value = true
-            fallthrough
-        case 9:
-            isRightLegVisible.value = true
-            fallthrough
-        case 8:
-            isLeftLegVisible.value = true
-            fallthrough
-        case 7:
-            isRightHandVisible.value = true
-            fallthrough
-        case 6:
-            isLeftHandVisible.value = true
-            fallthrough
-        case 5:
-            isRightArmVisible.value = true
-            fallthrough
-        case 4:
-            isLeftArmVisible.value = true
-            fallthrough
-        case 3:
-            isCorpusVisible.value = true
-            fallthrough
-        case 2:
-            isNeckVisible.value = true
-            fallthrough
-        case 1:
-            isHeadVisible.value = true
-        default:
-            assert(false, "Unsupported number of incorrect guesses!")
-            return
-        }
-    }
-
     
 }
