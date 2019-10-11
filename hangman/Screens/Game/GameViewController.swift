@@ -79,46 +79,57 @@ final class GameViewController: UIViewController {
         })
 
         viewModel.isHeadVisible
+            .map { !$0 }
             .bind(to: customView.headImageView.rx.isHidden)
             .disposed(by: disposableBag)
 
         viewModel.isNeckVisible
+            .map { !$0 }
             .bind(to: customView.neckImageView.rx.isHidden)
             .disposed(by: disposableBag)
 
         viewModel.isCorpusVisible
+            .map { !$0 }
             .bind(to: customView.corpusImageView.rx.isHidden)
             .disposed(by: disposableBag)
 
         viewModel.isLeftArmVisible
+            .map { !$0 }
             .bind(to: customView.leftArmImageView.rx.isHidden)
             .disposed(by: disposableBag)
 
         viewModel.isRightArmVisible
+            .map { !$0 }
             .bind(to: customView.rightArmImageView.rx.isHidden)
             .disposed(by: disposableBag)
 
         viewModel.isLeftHandVisible
+            .map { !$0 }
             .bind(to: customView.leftHandImageView.rx.isHidden)
             .disposed(by: disposableBag)
 
         viewModel.isRightHandVisible
+            .map { !$0 }
             .bind(to: customView.rightHandImageView.rx.isHidden)
             .disposed(by: disposableBag)
 
         viewModel.isLeftLegVisible
+            .map { !$0 }
             .bind(to: customView.leftLegImageView.rx.isHidden)
             .disposed(by: disposableBag)
 
         viewModel.isRightLegVisible
+            .map { !$0 }
             .bind(to: customView.rightLegImageView.rx.isHidden)
             .disposed(by: disposableBag)
 
         viewModel.isLeftFootVisible
+            .map { !$0 }
             .bind(to: customView.leftFootImageView.rx.isHidden)
             .disposed(by: disposableBag)
 
         viewModel.isRightFootVisible
+            .map { !$0 }
             .bind(to: customView.rightFootImageView.rx.isHidden)
             .disposed(by: disposableBag)
 
