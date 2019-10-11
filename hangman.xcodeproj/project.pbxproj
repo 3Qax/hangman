@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1916DB652330E73000DF103E /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1916DB642330E73000DF103E /* Bindable.swift */; };
 		1916DB682330F48400DF103E /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1916DB672330F48400DF103E /* GameModel.swift */; };
 		194F1E1923286CD1004C31A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194F1E1823286CD1004C31A8 /* AppDelegate.swift */; };
 		194F1E1B23286CD1004C31A8 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194F1E1A23286CD1004C31A8 /* StartViewController.swift */; };
@@ -29,6 +28,8 @@
 		194F1E5F2328775B004C31A8 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194F1E5E2328775B004C31A8 /* GameViewModel.swift */; };
 		19F4E20B2328FBCA00773303 /* AllerDisplay.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 194F1E4D2328712E004C31A8 /* AllerDisplay.ttf */; };
 		19F4E20D2328FCF600773303 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F4E20C2328FCF600773303 /* UIFont+Extension.swift */; };
+		1A872E110FAB70E5CC4F0A75 /* Pods_hangman.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0BC7E6007994AF436683C27 /* Pods_hangman.framework */; };
+		6EAB348E1504976736BAA3DB /* Pods_hangman_hangmanUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C580EF22A451192BE99E259 /* Pods_hangman_hangmanUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +43,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1916DB642330E73000DF103E /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		1916DB672330F48400DF103E /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		194F1E1523286CD1004C31A8 /* hangman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hangman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		194F1E1823286CD1004C31A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +68,12 @@
 		194F1E5C23287742004C31A8 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		194F1E5E2328775B004C31A8 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		19F4E20C2328FCF600773303 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		37A2485BAEEC45C0632917F9 /* Pods-hangman.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hangman.debug.xcconfig"; path = "Target Support Files/Pods-hangman/Pods-hangman.debug.xcconfig"; sourceTree = "<group>"; };
+		3C580EF22A451192BE99E259 /* Pods_hangman_hangmanUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hangman_hangmanUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		622824401EDC39DFA6E18527 /* Pods-hangman-hangmanUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hangman-hangmanUITests.debug.xcconfig"; path = "Target Support Files/Pods-hangman-hangmanUITests/Pods-hangman-hangmanUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9FA0C79BB23392E8EE19B28A /* Pods-hangman-hangmanUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hangman-hangmanUITests.release.xcconfig"; path = "Target Support Files/Pods-hangman-hangmanUITests/Pods-hangman-hangmanUITests.release.xcconfig"; sourceTree = "<group>"; };
+		BAC9872E54AD666E63E60002 /* Pods-hangman.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hangman.release.xcconfig"; path = "Target Support Files/Pods-hangman/Pods-hangman.release.xcconfig"; sourceTree = "<group>"; };
+		C0BC7E6007994AF436683C27 /* Pods_hangman.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hangman.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A872E110FAB70E5CC4F0A75 /* Pods_hangman.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,26 +89,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EAB348E1504976736BAA3DB /* Pods_hangman_hangmanUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1916DB662330E73800DF103E /* Custom Classes */ = {
-			isa = PBXGroup;
-			children = (
-				1916DB642330E73000DF103E /* Bindable.swift */,
-			);
-			path = "Custom Classes";
-			sourceTree = "<group>";
-		};
 		194F1E0C23286CD1004C31A8 = {
 			isa = PBXGroup;
 			children = (
 				194F1E1723286CD1004C31A8 /* hangman */,
 				194F1E2C23286CD2004C31A8 /* hangmanUITests */,
 				194F1E1623286CD1004C31A8 /* Products */,
+				B04D4BA673FE18F12C978DE0 /* Pods */,
+				C72DAC0C4D7ED390EAED61EA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -117,7 +119,6 @@
 		194F1E1723286CD1004C31A8 /* hangman */ = {
 			isa = PBXGroup;
 			children = (
-				1916DB662330E73800DF103E /* Custom Classes */,
 				194F1E3823286CE8004C31A8 /* App */,
 				194F1E5023287207004C31A8 /* Extensions */,
 				194F1E3E23286D59004C31A8 /* Assets */,
@@ -232,6 +233,26 @@
 			path = Start;
 			sourceTree = "<group>";
 		};
+		B04D4BA673FE18F12C978DE0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				37A2485BAEEC45C0632917F9 /* Pods-hangman.debug.xcconfig */,
+				BAC9872E54AD666E63E60002 /* Pods-hangman.release.xcconfig */,
+				622824401EDC39DFA6E18527 /* Pods-hangman-hangmanUITests.debug.xcconfig */,
+				9FA0C79BB23392E8EE19B28A /* Pods-hangman-hangmanUITests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C72DAC0C4D7ED390EAED61EA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C0BC7E6007994AF436683C27 /* Pods_hangman.framework */,
+				3C580EF22A451192BE99E259 /* Pods_hangman_hangmanUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -239,9 +260,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 194F1E3223286CD2004C31A8 /* Build configuration list for PBXNativeTarget "hangman" */;
 			buildPhases = (
+				25C513A4AF0FFA72CEAC7C4D /* [CP] Check Pods Manifest.lock */,
 				194F1E1123286CD1004C31A8 /* Sources */,
 				194F1E1223286CD1004C31A8 /* Frameworks */,
 				194F1E1323286CD1004C31A8 /* Resources */,
+				9920187C66E66161C33CF432 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -256,9 +279,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 194F1E3523286CD2004C31A8 /* Build configuration list for PBXNativeTarget "hangmanUITests" */;
 			buildPhases = (
+				6D29C52FB68ED657A0F61E00 /* [CP] Check Pods Manifest.lock */,
 				194F1E2523286CD2004C31A8 /* Sources */,
 				194F1E2623286CD2004C31A8 /* Frameworks */,
 				194F1E2723286CD2004C31A8 /* Resources */,
+				8C2D5A2BDCD6CE9B213FDD01 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -329,6 +354,87 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		25C513A4AF0FFA72CEAC7C4D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-hangman-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6D29C52FB68ED657A0F61E00 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-hangman-hangmanUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8C2D5A2BDCD6CE9B213FDD01 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-hangman-hangmanUITests/Pods-hangman-hangmanUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-hangman-hangmanUITests/Pods-hangman-hangmanUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hangman-hangmanUITests/Pods-hangman-hangmanUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9920187C66E66161C33CF432 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-hangman/Pods-hangman-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-hangman/Pods-hangman-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hangman/Pods-hangman-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		194F1E1123286CD1004C31A8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -344,7 +450,6 @@
 				194F1E5F2328775B004C31A8 /* GameViewModel.swift in Sources */,
 				194F1E4823286D74004C31A8 /* NetworkDispatcher.swift in Sources */,
 				194F1E1B23286CD1004C31A8 /* StartViewController.swift in Sources */,
-				1916DB652330E73000DF103E /* Bindable.swift in Sources */,
 				194F1E3A23286D1C004C31A8 /* AppFlowCordinatior.swift in Sources */,
 				194F1E4523286D74004C31A8 /* HTTPMethod.swift in Sources */,
 				194F1E1923286CD1004C31A8 /* AppDelegate.swift in Sources */,
@@ -502,6 +607,7 @@
 		};
 		194F1E3323286CD2004C31A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 37A2485BAEEC45C0632917F9 /* Pods-hangman.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -520,6 +626,7 @@
 		};
 		194F1E3423286CD2004C31A8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BAC9872E54AD666E63E60002 /* Pods-hangman.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -538,6 +645,7 @@
 		};
 		194F1E3623286CD2004C31A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 622824401EDC39DFA6E18527 /* Pods-hangman-hangmanUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -558,6 +666,7 @@
 		};
 		194F1E3723286CD2004C31A8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9FA0C79BB23392E8EE19B28A /* Pods-hangman-hangmanUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

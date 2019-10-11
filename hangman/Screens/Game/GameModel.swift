@@ -9,12 +9,9 @@
 import Foundation
 
 
-final class GameModel {
 
-    public let word: String
+struct GameModel {
 
-    init(word: String) {
-        self.word = word
-    }
+    let originalWord: String
 
 }
