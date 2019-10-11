@@ -139,23 +139,25 @@ final class GameViewController: UIViewController {
 
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        let folksCorpusWidth = customView.corpusImageView.frame.width
-        let screenSize = customView.frame.width
-        let currentProportion = folksCorpusWidth / screenSize
-        let designatedProportion: CGFloat = 0.15
-        let scaleToSet = designatedProportion / currentProportion
-        customView.folkWrapper.transform = CGAffineTransform(scaleX: scaleToSet, y: scaleToSet)
-        customView.folkWrapper.topAnchor.constraint(equalTo: customView.barImageView.bottomAnchor,
-                                                    constant: 0)
-            .isActive = true
+    override func viewDidLayoutSubviews() {
+
+        super.viewDidLayoutSubviews()
+
+        // apply transformation only if the wraper isn't already transformed
+        if customView.folkWrapper.transform.a == 1 && customView.folkWrapper.transform.d == 1 {
+
+            customView.folkWrapper.setAnchorPoint(CGPoint(x: 0.5, y: 1))
+            let folksWidth = customView.folkWrapper.frame.width
+            let screenSize = UIScreen.main.bounds.width
+            let currentProportion = folksWidth / screenSize
+            let designatedProportion: CGFloat = 0.4
+            let scaleToSet = designatedProportion / currentProportion
+            customView.folkWrapper.transform = CGAffineTransform(scaleX: scaleToSet, y: scaleToSet)
+            customView.folkWrapper.topAnchor.constraint(equalTo: customView.barImageView.bottomAnchor, constant: 30).isActive = true
+
+        }
 
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-//        customView.folkWrapper.transform = CGAffineTransform(scaleX: 2.0, y: 4.0)
-    }
-
 
     func didTapLetter(sender: UIButton) {
         if viewModel.guess(letter: sender.titleLabel!.text!.first!) {

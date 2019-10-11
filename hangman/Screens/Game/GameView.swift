@@ -444,8 +444,13 @@ final class GameView: UIView {
 
         self.addSubview(verticalKeyboardStack)
         verticalKeyboardStack.translatesAutoresizingMaskIntoConstraints = false
-        verticalKeyboardStack.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
-        verticalKeyboardStack.bottomAnchor.constraint(greaterThanOrEqualTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
+
+        let vksbatsalgba = verticalKeyboardStack.bottomAnchor.constraint(greaterThanOrEqualTo: self.safeAreaLayoutGuide.bottomAnchor, constant: 0)
+        vksbatsalgba.priority = .init(rawValue: 999)
+            vksbatsalgba.isActive = true
+
+        verticalKeyboardStack.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor, constant: -10).isActive = true
+
         verticalKeyboardStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
         verticalKeyboardStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
         verticalKeyboardStack.addArrangedSubview(firstRowOfKeyboard)
