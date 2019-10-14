@@ -47,10 +47,16 @@ final class StartViewController: UIViewController {
             .disposed(by: disposeBag)
 
         customView.useRandomWordSwitch.rx.isOn
-            .subscribe(onNext: { value in
-                self.customView.useRandomWordLabelBottomToTopOfCustomWordTextField?.isActive = !value
-                self.customView.useRandomWordLabelBottomToTopOfPlayButtonConstraint?.isActive = value
-                self.customView.customWordTextField.isHidden = value
+            .subscribe(onNext: { hideCustomWordTextField in
+                if hideCustomWordTextField {
+                    self.customView.customWordTextField.isHidden = true
+                    self.customView.useRandomWordLabelBottomToTopOfCustomWordTextField?.isActive = false
+                    self.customView.useRandomWordLabelBottomToTopOfPlayButtonConstraint?.isActive = true
+                } else {
+                    self.customView.customWordTextField.isHidden = false
+                    self.customView.useRandomWordLabelBottomToTopOfPlayButtonConstraint?.isActive = false
+                    self.customView.useRandomWordLabelBottomToTopOfCustomWordTextField?.isActive = true
+                }
             }).disposed(by: disposeBag)
 
         customView.playButton.rx.tap
