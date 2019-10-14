@@ -12,7 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var appFlowCordinator: Coordinatior?
+    var appFlowCoordinator: Coordinator?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
 
-        self.appFlowCordinator = AppFlowCordinatior(window: window)
-        self.appFlowCordinator?.start()
+        self.appFlowCoordinator = AppFlowCoordinator(window: window)
+        self.appFlowCoordinator?.start()
 
         return true
     }

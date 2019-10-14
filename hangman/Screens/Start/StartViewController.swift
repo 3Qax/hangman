@@ -22,14 +22,14 @@ final class StartViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private lazy var notificationFeedbackGenerator = UINotificationFeedbackGenerator()
 
-    weak var cordinator: StartViewControllerDelegate?
+    weak var coordinator: StartViewControllerDelegate?
 
-    init(cordinator: StartViewControllerDelegate) {
+    init(coordinator: StartViewControllerDelegate) {
 
         self.customView = StartView()
         self.viewModel = StartViewModel()
 
-        self.cordinator = cordinator
+        self.coordinator = coordinator
 
         super.init(nibName: nil, bundle: nil)
 
@@ -57,7 +57,7 @@ final class StartViewController: UIViewController {
 
         customView.playButton.rx.tap
             // it's safe to force unwrap here since button cannot be tap when text is nil
-            .subscribe({ [unowned self] _ in self.cordinator?.startGame(word: self.customView.customWordTextField.text!) })
+            .subscribe({ [unowned self] _ in self.coordinator?.startGame(word: self.customView.customWordTextField.text!) })
             .disposed(by: disposeBag)
 
 

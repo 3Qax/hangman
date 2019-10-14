@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class AppFlowCordinatior: Coordinatior {
+final class AppFlowCoordinator: Coordinator {
 
     let window: UIWindow
     private var navigationController: UINavigationController?
@@ -18,7 +18,7 @@ final class AppFlowCordinatior: Coordinatior {
     }
 
     func start() {
-        let startViewController = StartViewController(cordinator: self)
+        let startViewController = StartViewController(coordinator: self)
         navigationController = UINavigationController(rootViewController: startViewController)
         navigationController?.navigationBar.isHidden = true
 
@@ -28,17 +28,17 @@ final class AppFlowCordinatior: Coordinatior {
 
 }
 
-extension AppFlowCordinatior: StartViewControllerDelegate {
+extension AppFlowCoordinator: StartViewControllerDelegate {
 
     func startGame(word: String) {
         let gameViewController = GameViewController(gameModel: GameModel(originalWord: word),
-                                                    cordinator: self)
+                                                    coordinator: self)
         navigationController?.pushViewController(gameViewController, animated: true)
     }
 
 }
 
-extension AppFlowCordinatior: GameViewControllerDelegate {
+extension AppFlowCoordinator: GameViewControllerDelegate {
 
     func didWinGame() {
         print("Congratulations!")

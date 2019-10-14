@@ -23,14 +23,14 @@ final class GameViewController: UIViewController {
 
     lazy var notificationFeedbackGenerator = UINotificationFeedbackGenerator()
 
-    weak var cordinator: GameViewControllerDelegate?
+    weak var coordinator: GameViewControllerDelegate?
 
-    init(gameModel: GameModel, cordinator: GameViewControllerDelegate) {
+    init(gameModel: GameModel, coordinator: GameViewControllerDelegate) {
 
         self.customView = GameView()
         self.viewModel = GameViewModel(model: gameModel)
 
-        self.cordinator = cordinator
+        self.coordinator = coordinator
 
         super.init(nibName: nil, bundle: nil)
 
