@@ -47,11 +47,17 @@ final class StartViewController: UIViewController {
             .disposed(by: disposeBag)
 
         customView.useRandomWordSwitch.rx.isOn
-            .subscribe(onNext: { hideCustomWordTextField in
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] hideCustomWordTextField in
                 if hideCustomWordTextField {
-                    self.customView.customWordTextField.removeFromSuperview()
+                    UIView.animate(withDuration: 0.3, animations: {
+                        self?.customView.additionalContentStackView.arrangedSubviews.forEach({ $0.isHidden = true })
+                    })
                 } else {
-                    self.customView.additionalContentStackView.addArrangedSubview(self.customView.customWordTextField)
+                    UIView.animate(withDuration: 0.3, animations: {
+                        self?.customView.additionalContentStackView.arrangedSubviews.forEach({ $0.isHidden = false })
+                        self?.customView.additionalContentStackView.layoutIfNeeded()
+                    })
                 }
             }).disposed(by: disposeBag)
 
@@ -62,6 +68,7 @@ final class StartViewController: UIViewController {
 
 
         viewModel.allowGameStart
+            .observeOn(MainScheduler.instance)
             .subscribe(onNext: { areCorrect in
                 self.customView.playButton.isEnabled = areCorrect
                 self.customView.playButton
@@ -75,6 +82,7 @@ final class StartViewController: UIViewController {
 
         viewModel.warningMessage
             .distinctUntilChanged()
+            .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] warning in
 
             // remove any other warnings
@@ -98,6 +106,7 @@ final class StartViewController: UIViewController {
 
         viewModel.errorMessage
             .distinctUntilChanged()
+            .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] error in
 
             // remove any other errors

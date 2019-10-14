@@ -106,9 +106,11 @@ final class StartView: UIView {
 
         self.addSubview(additionalContentStackView)
         additionalContentStackView.translatesAutoresizingMaskIntoConstraints = false
-        additionalContentStackView.leadingAnchor.constraint(equalTo: playButton.leadingAnchor).isActive = true
-        additionalContentStackView.trailingAnchor.constraint(equalTo: playButton.trailingAnchor).isActive = true
+        additionalContentStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+        additionalContentStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
         additionalContentStackView.bottomAnchor.constraint(equalTo: playButton.topAnchor, constant: -10).isActive = true
+
+        additionalContentStackView.addArrangedSubview(customWordTextField)
 
         self.addSubview(useRandomWordLabel)
         useRandomWordLabel.translatesAutoresizingMaskIntoConstraints = false
