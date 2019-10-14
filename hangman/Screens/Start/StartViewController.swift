@@ -13,6 +13,7 @@ import RxCocoa
 protocol StartViewControllerDelegate: AnyObject {
     func startGame(word: String)
 }
+
 final class StartViewController: UIViewController {
 
     private var customView: StartView
@@ -35,9 +36,7 @@ final class StartViewController: UIViewController {
 
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
-    override func loadView() {
-        self.view = customView
-    }
+    override func loadView() { self.view = customView }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +64,7 @@ final class StartViewController: UIViewController {
             .disposed(by: disposeBag)
 
 
-        viewModel.areSettingsCorrect
+        viewModel.allowGameStart
             .subscribe(onNext: { areCorrect in
                 self.customView.playButton.isEnabled = areCorrect
                 self.customView.playButton

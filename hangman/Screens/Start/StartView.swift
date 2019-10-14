@@ -52,6 +52,7 @@ final class StartView: UIView {
         textField.layer.borderColor = UIColor.defaultText.cgColor
         textField.textColor = .defaultPurple
         textField.placeholder = "Word to guess"
+        textField.autocapitalizationType = .allCharacters
         return textField
     }()
     let playButton: UIButton = {
