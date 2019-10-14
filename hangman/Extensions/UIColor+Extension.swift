@@ -15,6 +15,8 @@ extension UIColor {
     static let tileLightGray = UIColor.color(red: 230, green: 230, blue: 231)
     static let tileDarkGray = UIColor.color(red: 83, green: 85, blue: 93)
 
+    static let defaultWarningYellow = UIColor.color(red: 245, green: 208, blue: 72)
+
     /// Return an instance of UIColors from a given hex number
     /// - Parameter hex: The hex value of the color object.
     /// Returns: The color object.

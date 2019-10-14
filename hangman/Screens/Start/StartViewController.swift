@@ -20,6 +20,7 @@ final class StartViewController: UIViewController {
     private var viewModel: StartViewModel
     
     private let disposeBag = DisposeBag()
+    private lazy var notificationFeedbackGenerator = UINotificationFeedbackGenerator()
 
     weak var cordinator: StartViewControllerDelegate?
 
@@ -48,13 +49,9 @@ final class StartViewController: UIViewController {
         customView.useRandomWordSwitch.rx.isOn
             .subscribe(onNext: { hideCustomWordTextField in
                 if hideCustomWordTextField {
-                    self.customView.customWordTextField.isHidden = true
-                    self.customView.useRandomWordLabelBottomToTopOfCustomWordTextField?.isActive = false
-                    self.customView.useRandomWordLabelBottomToTopOfPlayButtonConstraint?.isActive = true
+                    self.customView.customWordTextField.removeFromSuperview()
                 } else {
-                    self.customView.customWordTextField.isHidden = false
-                    self.customView.useRandomWordLabelBottomToTopOfPlayButtonConstraint?.isActive = false
-                    self.customView.useRandomWordLabelBottomToTopOfCustomWordTextField?.isActive = true
+                    self.customView.additionalContentStackView.addArrangedSubview(self.customView.customWordTextField)
                 }
             }).disposed(by: disposeBag)
 
@@ -75,6 +72,44 @@ final class StartViewController: UIViewController {
         customView.customWordTextField.rx.text.orEmpty
             .bind(to: viewModel.customWord)
             .disposed(by: disposeBag)
+
+        viewModel.warningMessage
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] warning in
+
+            // remove any other warnings
+            self?.customView.additionalContentStackView.arrangedSubviews
+                .compactMap({ $0 as? MessageBox })
+                .filter({ $0.style == .warning })
+                .forEach({ $0.removeFromSuperview() })
+
+            // if there is a warning
+            if let warningMessage = warning {
+                self?.notificationFeedbackGenerator.notificationOccurred(.warning)
+                let newWarning = MessageBox(message: warningMessage, style: .warning)
+                self?.customView.additionalContentStackView.insertArrangedSubview(newWarning, at: 0)
+            }
+
+        }).disposed(by: disposeBag)
+
+        viewModel.errorMessage
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] error in
+
+            // remove any other errors
+            self?.customView.additionalContentStackView.arrangedSubviews
+                .compactMap({ $0 as? MessageBox })
+                .filter({ $0.style == .error })
+                .forEach({ $0.removeFromSuperview() })
+
+            // if there is a error
+            if let errorMessage = error {
+                self?.notificationFeedbackGenerator.notificationOccurred(.error)
+                let newError = MessageBox(message: errorMessage, style: .error)
+                self?.customView.additionalContentStackView.insertArrangedSubview(newError, at: 0)
+            }
+
+        }).disposed(by: disposeBag)
         
     }
 
