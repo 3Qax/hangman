@@ -87,7 +87,11 @@ final class StartViewController: UIViewController {
             if let warningMessage = warning {
                 self?.notificationFeedbackGenerator.notificationOccurred(.warning)
                 let newWarning = MessageBox(message: warningMessage, style: .warning)
+                newWarning.isHidden = true
                 self?.customView.additionalContentStackView.insertArrangedSubview(newWarning, at: 0)
+                UIView.animate(withDuration: 0.3, animations: {
+                    newWarning.isHidden = false
+                })
             }
 
         }).disposed(by: disposeBag)
@@ -106,7 +110,11 @@ final class StartViewController: UIViewController {
             if let errorMessage = error {
                 self?.notificationFeedbackGenerator.notificationOccurred(.error)
                 let newError = MessageBox(message: errorMessage, style: .error)
+                newError.isHidden = true
                 self?.customView.additionalContentStackView.insertArrangedSubview(newError, at: 0)
+                UIView.animate(withDuration: 0.3, animations: {
+                    newError.isHidden = false
+                })
             }
 
         }).disposed(by: disposeBag)
