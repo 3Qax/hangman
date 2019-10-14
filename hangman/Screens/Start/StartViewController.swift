@@ -54,7 +54,8 @@ final class StartViewController: UIViewController {
             }).disposed(by: disposeBag)
 
         customView.playButton.rx.tap
-            .subscribe({ [weak self] _ in self?.cordinator?.startGame(word: "TEST") })
+            // it's safe to force unwrap here since button cannot be tap when text is nil
+            .subscribe({ [unowned self] _ in self.cordinator?.startGame(word: self.customView.customWordTextField.text!) })
             .disposed(by: disposeBag)
 
 
