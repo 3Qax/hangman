@@ -137,6 +137,25 @@ final class GameViewController: UIViewController {
             .bind(to: customView.wordLabel.rx.text)
             .disposed(by: disposableBag)
 
+        viewModel.gameResult.subscribe(onNext: { [unowned self] result in
+            switch result {
+
+            case .success:
+                self.coordinator?.didWinGame()
+            case .failure(let reason):
+                switch reason {
+
+                case .letterAlreadyGuessed:
+                    assert(false, "Guessed already guessed letter!")
+                case .endOfChances:
+                    self.coordinator?.didLoseGame()
+                @unknown default:
+                    assert(false, "Unhandled error")
+                }
+            }
+
+        }).disposed(by: disposableBag)
+
     }
 
     override func viewDidLayoutSubviews() {

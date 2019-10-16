@@ -41,11 +41,13 @@ extension AppFlowCoordinator: StartViewControllerDelegate {
 extension AppFlowCoordinator: GameViewControllerDelegate {
 
     func didWinGame() {
-        print("Congratulations!")
+        print("Won a game!")
+        navigationController?.popViewController(animated: true)
     }
 
     func didLoseGame() {
-        print("Maybe next time!")
+        print("Lost a game!")
+        navigationController?.popViewController(animated: true)
     }
 
 }

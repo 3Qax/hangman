@@ -14,6 +14,11 @@ import RxCocoa
 
 final class GameViewModel {
 
+    enum GameErrors: Error {
+        case letterAlreadyGuessed
+        case endOfChances
+    }
+
     public let isHeadVisible = BehaviorRelay<Bool>(value: false)
     public let isNeckVisible = BehaviorRelay<Bool>(value: false)
     public let isCorpusVisible = BehaviorRelay<Bool>(value: false)
@@ -35,9 +40,9 @@ final class GameViewModel {
     public let numberOfGuesses = BehaviorRelay<Int>(value: 0)
     public let numberOfIncorrectGuesses = BehaviorRelay<Int>(value: 0)
 
-//    public let gameResult = Single<Void>
+    public let gameResult = PublishSubject<Result<Void, GameErrors>>()
 
-    // MARK: - INTERNAL LOGIC VARIABLES
+
 
     // representation of game
     // onNext events are guesses, onCompletion is win, onError is lose
@@ -77,7 +82,10 @@ final class GameViewModel {
 
         // update folk visablity according to number of incorrect guesses
         numberOfIncorrectGuesses.subscribe(onNext: { [unowned self] number in
-            if number >= 11 { self.isRightFootVisible.accept(true) }
+            if number == 11 {
+                self.isRightFootVisible.accept(true)
+                self.gameResult.onNext(.failure(.endOfChances))
+            }
             if number >= 10 { self.isLeftFootVisible.accept(true) }
             if number >= 9 { self.isRightLegVisible.accept(true) }
             if number >= 8 { self.isLeftLegVisible.accept(true) }
@@ -105,6 +113,10 @@ final class GameViewModel {
         }
 
         game.onNext(letter)
+
+        // check if it's end of the game
+        if numberOfGuessesNeededToWin() == 0 { gameResult.onNext(.success(())) }
+
         return true
 
     }
@@ -113,10 +125,22 @@ final class GameViewModel {
     private func isCorrectGuess(_ letterToBeGuessed: Character) -> Bool {
 
         // make sure that the letter hasn't been already guessed
-        guard !guessedLetters.value.contains(letterToBeGuessed) else { return false }
+        guard !guessedLetters.value.contains(letterToBeGuessed) else {
+            gameResult.onNext(.failure(.letterAlreadyGuessed))
+            return false
+        }
 
         // if the original word contains that letter it's a correct guess
         return model.originalWord.contains(letterToBeGuessed)
+
+    }
+
+    private func numberOfGuessesNeededToWin() -> Int {
+
+        let lettersInMaskedWord = Set(maskedWord.value.replacingOccurrences(of: "_", with: ""))
+        let lettersInOriginalWord = Set(model.originalWord)
+
+        return lettersInOriginalWord.symmetricDifference(lettersInMaskedWord).count
 
     }
     
