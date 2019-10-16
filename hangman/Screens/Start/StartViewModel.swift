@@ -32,7 +32,7 @@ final class StartViewModel {
         Observable.combineLatest(useRandomWord, customWord)
             .map({ [weak self] usingRandomWord, customWord -> Bool in
 
-                // make sure to not validate words from API (automatically genenrated)
+                // make sure to not validate words from API (automatically generated)
                 guard !usingRandomWord else {
                     return true
                 }

@@ -162,7 +162,7 @@ final class GameViewController: UIViewController {
 
         super.viewDidLayoutSubviews()
 
-        // apply transformation only if the wraper isn't already transformed
+        // apply transformation only if the wrapper isn't already transformed
         if customView.folkWrapper.transform.a == 1 && customView.folkWrapper.transform.d == 1 {
 
             customView.folkWrapper.setAnchorPoint(CGPoint(x: 0.5, y: 1))

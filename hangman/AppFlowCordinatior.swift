@@ -1,6 +1,6 @@
 //
-//  AppFlowCordinatior.swift
-//  pokedex
+//  AppFlowCoordinator.swift
+//  hangman
 //
 //  Created by Jakub Towarek on 10/09/2019.
 //  Copyright © 2019 Jakub Towarek. All rights reserved.

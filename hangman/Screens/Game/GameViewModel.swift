@@ -66,11 +66,11 @@ final class GameViewModel {
 
             var updatedWord = model.originalWord
 
-            // for each uniqe letter in String
+            // for each unique letter in String
             Set(model.originalWord).forEach({ letter in
                 // if the guessedLetters doesn't contain a particular letter
                 if !self.guessedLetters.value.contains(letter) && !letter.isWhitespace {
-                    // replace all it occurances with underscore
+                    // replace all it occurrences with underscore
                     updatedWord = updatedWord.replacingOccurrences(of: String(letter), with: "_")
                 }
 
@@ -80,7 +80,7 @@ final class GameViewModel {
 
         }).disposed(by: disposableBag)
 
-        // update folk visablity according to number of incorrect guesses
+        // update folk visibility according to number of incorrect guesses
         numberOfIncorrectGuesses.subscribe(onNext: { [unowned self] number in
             if number == 11 {
                 self.isRightFootVisible.accept(true)
@@ -102,7 +102,7 @@ final class GameViewModel {
 
     /// Guess a letter by calling this function
     /// - Parameter letter: a letter to be guessed
-    /// - Returns: Bool indicating wether a guess was corrcect or not
+    /// - Returns: Bool indicating wether a guess was correct or not
     public func guess(letter: Character) -> Bool {
 
         numberOfGuesses.accept(numberOfGuesses.value + 1)
