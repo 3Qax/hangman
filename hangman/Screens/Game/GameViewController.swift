@@ -149,8 +149,6 @@ final class GameViewController: UIViewController {
                     assert(false, "Guessed already guessed letter!")
                 case .endOfChances:
                     self.coordinator?.didLoseGame()
-                @unknown default:
-                    assert(false, "Unhandled error")
                 }
             }
 

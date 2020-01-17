@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class StartView: UIView {
+final class StartView: View {
 
     let hangmanTitle: UILabel = {
         let label = UILabel()
@@ -61,6 +61,9 @@ final class StartView: UIView {
         textField.textColor = .defaultPurple
         textField.placeholder = "Word to guess"
         textField.autocapitalizationType = .allCharacters
+        textField.layer.borderWidth = 3
+        let smallConfiguration = UIImage.SymbolConfiguration(scale: .small)
+        textField.layer.borderColor = (UIColor(patternImage: UIImage(systemName: "circle.fill", withConfiguration: smallConfiguration)!)).cgColor
         return textField
     }()
     let playButton: UIButton = {
@@ -75,8 +78,8 @@ final class StartView: UIView {
 
 
 
-    init() {
-        super.init(frame: .zero)
+    override init() {
+        super.init()
         self.backgroundColor = UIColor.defaultBackground
 
         self.addSubview(hangmanTitle)
@@ -101,7 +104,7 @@ final class StartView: UIView {
         playButton.translatesAutoresizingMaskIntoConstraints = false
         playButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
         playButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
-        playButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
+        playButton.bottomAnchor.constraint(equalTo: keyboardTopLayoutGuide.topAnchor, constant: -20).isActive = true
         playButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
 
         self.addSubview(additionalContentStackView)
@@ -123,7 +126,4 @@ final class StartView: UIView {
         useRandomWordSwitch.centerYAnchor.constraint(equalTo: useRandomWordLabel.centerYAnchor).isActive = true
 
     }
-
-    required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-
 }

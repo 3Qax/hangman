@@ -135,6 +135,7 @@ final class GameViewModel {
 
     }
 
+    /// Calculates how many correct guesses user needs in order to win
     private func numberOfGuessesNeededToWin() -> Int {
 
         let lettersInMaskedWord = Set(maskedWord.value.replacingOccurrences(of: "_", with: ""))

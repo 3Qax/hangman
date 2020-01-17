@@ -14,9 +14,8 @@ protocol StartViewControllerDelegate: AnyObject {
     func startGame(word: String)
 }
 
-final class StartViewController: UIViewController {
+final class StartViewController: ViewController<StartView> {
 
-    private var customView: StartView
     private var viewModel: StartViewModel
     
     private let disposeBag = DisposeBag()
@@ -25,22 +24,14 @@ final class StartViewController: UIViewController {
     weak var coordinator: StartViewControllerDelegate?
 
     init(coordinator: StartViewControllerDelegate) {
-
-        self.customView = StartView()
         self.viewModel = StartViewModel()
-
         self.coordinator = coordinator
-
-        super.init(nibName: nil, bundle: nil)
-
+        super.init(view: StartView())
     }
-
-    required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-
-    override func loadView() { self.view = customView }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        automaticallyAdjustKeyboardLayoutGuide = true
 
         customView.useRandomWordSwitch.rx.isOn
             .bind(to: viewModel.useRandomWord)
