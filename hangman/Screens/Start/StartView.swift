@@ -17,6 +17,7 @@ final class StartView: View {
         label.textColor = UIColor.defaultPurple
         return label
     }()
+    let barWrapper = UIView()
     let barImageView: UIImageView = {
         let bundle = Bundle(identifier: "Hangman")
         let image = UIImage(named: "bar", in: bundle, compatibleWith: nil)
@@ -87,11 +88,18 @@ final class StartView: View {
         hangmanTitle.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
         hangmanTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0).isActive = true
 
-        self.addSubview(barImageView)
+        self.addSubviews(barImageView, barWrapper)
+        barImageView.setAnchorPoint(CGPoint(x: 0.0, y: 0.5))
+        barWrapper.translatesAutoresizingMaskIntoConstraints = false
         barImageView.translatesAutoresizingMaskIntoConstraints = false
-        barImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
-        barImageView.trailingAnchor.constraint(equalTo: self.centerXAnchor, constant: 20).isActive = true
-        barImageView.topAnchor.constraint(equalTo: hangmanTitle.bottomAnchor, constant: 20).isActive = true
+        barImageView.centerXAnchor.constraint(equalTo: barWrapper.leadingAnchor).isActive = true
+        barImageView.widthAnchor.constraint(equalTo: barWrapper.widthAnchor).isActive = true
+        barWrapper.topAnchor.constraint(equalTo: hangmanTitle.bottomAnchor, constant: 20).isActive = true
+        barWrapper.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
+        barWrapper.trailingAnchor.constraint(equalTo: self.centerXAnchor, constant: 20).isActive = true
+        barImageView.topAnchor.constraint(equalTo: barWrapper.topAnchor).isActive = true
+        barImageView.bottomAnchor.constraint(equalTo: barWrapper.bottomAnchor).isActive = true
+
 
         self.addSubview(folkImageView)
         folkImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -124,6 +132,5 @@ final class StartView: View {
         useRandomWordSwitch.translatesAutoresizingMaskIntoConstraints = false
         useRandomWordSwitch.trailingAnchor.constraint(equalTo: playButton.trailingAnchor, constant: -5).isActive = true
         useRandomWordSwitch.centerYAnchor.constraint(equalTo: useRandomWordLabel.centerYAnchor).isActive = true
-
     }
 }

@@ -31,7 +31,7 @@ final class StartViewController: ViewController<StartView> {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        automaticallyAdjustKeyboardLayoutGuide = true
+        setupKeyboardHandling()
 
         customView.useRandomWordSwitch.rx.isOn
             .bind(to: viewModel.useRandomWord)
@@ -39,17 +39,17 @@ final class StartViewController: ViewController<StartView> {
 
         customView.useRandomWordSwitch.rx.isOn
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] hideCustomWordTextField in
-                if hideCustomWordTextField {
-                    UIView.animate(withDuration: 0.3, animations: {
-                        self?.customView.additionalContentStackView.arrangedSubviews.forEach({ $0.isHidden = true })
-                    })
-                } else {
-                    UIView.animate(withDuration: 0.3, animations: {
-                        self?.customView.additionalContentStackView.arrangedSubviews.forEach({ $0.isHidden = false })
-                        self?.customView.additionalContentStackView.layoutIfNeeded()
-                    })
-                }
+            .subscribe(onNext: { [weak self] useRandomWord in
+                UIViewPropertyAnimator.runningPropertyAnimator(
+                    withDuration: 0.3,
+                    delay: 0.0,
+                    options: .curveLinear,
+                    animations: {
+                        self?.customView.additionalContentStackView
+                                            .arrangedSubviews
+                                            .forEach({ $0.isHidden = useRandomWord })
+                })
+//                self?.customView.additionalContentStackView.layoutIfNeeded()
             }).disposed(by: disposeBag)
 
         customView.playButton.rx.tap
@@ -118,7 +118,27 @@ final class StartViewController: ViewController<StartView> {
             }
 
         }).disposed(by: disposeBag)
-        
+    }
+
+    private func setupKeyboardHandling() {
+        automaticallyAdjustKeyboardLayoutGuide = true
+        onKeyboardWillAppear = { _ in
+            var leftTransform = CATransform3DIdentity
+             leftTransform.m34 = -1.0/500.0
+             leftTransform = CATransform3DRotate(leftTransform, .pi / 2, 0, 1, 0)
+            UIView.animate(withDuration: 0.20, animations: {
+                self.customView.folkImageView.transform = CGAffineTransform(scaleX: 0.000001, y: 0.000001)
+                self.customView.barImageView.layer.transform = leftTransform
+            })
+        }
+        onKeyboardWillDisappear = { _ in
+            var leftTransform = CATransform3DIdentity
+            leftTransform.m34 = -1.0/500.0
+            UIView.animate(withDuration: 0.20, animations: {
+                self.customView.folkImageView.transform = .identity
+                self.customView.barImageView.layer.transform = leftTransform
+            })
+        }
     }
 
 }
