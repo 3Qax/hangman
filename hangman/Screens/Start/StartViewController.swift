@@ -49,7 +49,6 @@ final class StartViewController: ViewController<StartView> {
                                             .arrangedSubviews
                                             .forEach({ $0.isHidden = useRandomWord })
                 })
-//                self?.customView.additionalContentStackView.layoutIfNeeded()
             }).disposed(by: disposeBag)
 
         customView.playButton.rx.tap
@@ -62,8 +61,13 @@ final class StartViewController: ViewController<StartView> {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { areCorrect in
                 self.customView.playButton.isEnabled = areCorrect
-                self.customView.playButton
-                    .backgroundColor = areCorrect ? UIColor.defaultYellow : UIColor.darkGray
+                UIView.transition(
+                    with: self.customView.playButton,
+                    duration: 0.25,
+                    options: .transitionCrossDissolve,
+                    animations: {
+                        self.customView.playButton.backgroundColor = areCorrect ? UIColor.defaultYellow : UIColor.darkGray
+                })
             })
             .disposed(by: disposeBag)
 

@@ -54,17 +54,20 @@ final class StartView: View {
         stackView.spacing = 10
         return stackView
     }()
-    let customWordTextField: UITextField = {
-        let textField = UITextField()
+    let customWordTextField: InsetsTextField = {
+        let textField = InsetsTextField()
+        textField.isHidden = true
+        textField.font = UIFont(name: UIFont.allerDisplayName, size: 22)
+        textField.textAlignment = .center
         textField.backgroundColor = UIColor.defaultBackground
-        textField.borderStyle = .roundedRect
+        textField.borderStyle = .none
         textField.layer.borderColor = UIColor.defaultText.cgColor
         textField.textColor = .defaultPurple
-        textField.placeholder = "Word to guess"
+        textField.placeholder = "WORD TO GUESS"
         textField.autocapitalizationType = .allCharacters
-        textField.layer.borderWidth = 3
-        let smallConfiguration = UIImage.SymbolConfiguration(scale: .small)
-        textField.layer.borderColor = (UIColor(patternImage: UIImage(systemName: "circle.fill", withConfiguration: smallConfiguration)!)).cgColor
+        textField.layer.borderWidth = 4
+        textField.layer.borderColor = UIColor.defaultYellow.cgColor
+        textField.layer.cornerRadius = 15
         return textField
     }()
     let playButton: UIButton = {
@@ -122,6 +125,8 @@ final class StartView: View {
         additionalContentStackView.bottomAnchor.constraint(equalTo: playButton.topAnchor, constant: -10).isActive = true
 
         additionalContentStackView.addArrangedSubview(customWordTextField)
+        customWordTextField.translatesAutoresizingMaskIntoConstraints = false
+        customWordTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
 
         self.addSubview(useRandomWordLabel)
         useRandomWordLabel.translatesAutoresizingMaskIntoConstraints = false

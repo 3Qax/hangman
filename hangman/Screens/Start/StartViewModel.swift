@@ -33,9 +33,7 @@ final class StartViewModel {
             .map({ [weak self] usingRandomWord, customWord -> Bool in
 
                 // make sure to not validate words from API (automatically generated)
-                guard !usingRandomWord else {
-                    return true
-                }
+                guard !usingRandomWord else { return true }
 
                 // make sure that the word doesn't contain whitespaces
                 guard customWord.allSatisfy({ !$0.isWhitespace }) else {
@@ -81,5 +79,4 @@ final class StartViewModel {
             .disposed(by: disposableBag)
 
     }
-
 }
