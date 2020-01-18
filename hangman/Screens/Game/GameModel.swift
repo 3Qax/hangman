@@ -7,22 +7,30 @@
 //
 
 import Foundation
+import RxSwift
 
-struct GameModel {
+final class GameModel {
 
-    private(set) var originalWord: String
-
-    private let networkDispatcher = NetworkDispatcher()
-
-    init(word: String? = nil) {
-        if let word = word {
-            originalWord = word
+    private(set) lazy var originalWord: Single<String> = Single.create { [weak self] single in
+        let disposable = Disposables.create()
+        if let customWord = self?.customWord {
+            single(.success(customWord))
         } else {
             let request = PuzzleRequest().asURLRequest()
-            networkDispatcher.execute(urlRequest: request) { (result: Result<PuzzleResponse, Error>) in
-                // handle response
+            self?.networkDispatcher.execute(urlRequest: request) { (result: Result<PuzzleResponse, Error>) in
+                switch result {
+                case .success(let data): single(.success(data.puzzle))
+                case .failure(let reason): single(.error(reason))
+                }
             }
-            originalWord = "XD"
         }
+        return disposable
+    }
+
+    private let networkDispatcher = NetworkDispatcher()
+    private let customWord: String?
+
+    init(word: String? = nil) {
+        customWord = word
     }
 }

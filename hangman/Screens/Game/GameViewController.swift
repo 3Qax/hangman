@@ -139,23 +139,17 @@ final class GameViewController: UIViewController {
             .bind(to: customView.wordLabel.rx.text)
             .disposed(by: disposableBag)
 
-        viewModel.gameResult.subscribe(onNext: { [unowned self] result in
-            switch result {
+        viewModel.numberOfIncorrectGuesses
+            .subscribe(onNext: { _ in self.notificationFeedbackGenerator.notificationOccurred(.warning) })
+            .disposed(by: disposableBag)
 
-            case .success:
-                self.coordinator?.didWinGame()
-            case .failure(let reason):
-                switch reason {
-
-                case .letterAlreadyGuessed:
-                    assert(false, "Guessed already guessed letter!")
-                case .endOfChances:
-                    self.coordinator?.didLoseGame()
-                }
-            }
-
-        }).disposed(by: disposableBag)
-
+        viewModel.game
+            .observeOn(MainScheduler.instance)
+            .subscribe(
+                onError: { _ in self.coordinator?.didLoseGame() },
+                onCompleted: { self.coordinator?.didWinGame() }
+            )
+            .disposed(by: disposableBag)
     }
 
     override func viewDidLayoutSubviews() {
@@ -173,20 +167,12 @@ final class GameViewController: UIViewController {
             let scaleToSet = designatedProportion / currentProportion
             customView.folkWrapper.transform = CGAffineTransform(scaleX: scaleToSet, y: scaleToSet)
             customView.folkWrapper.topAnchor.constraint(equalTo: customView.barImageView.bottomAnchor, constant: 30).isActive = true
-
         }
-
     }
 
     func didTapLetter(sender: UIButton) {
-        if viewModel.guess(letter: sender.titleLabel!.text!.first!) {
-            notificationFeedbackGenerator.notificationOccurred(.success)
-        } else {
-            notificationFeedbackGenerator.notificationOccurred(.warning)
-        }
+        viewModel.game.onNext(sender.titleLabel!.text!.first!)
         sender.isEnabled = false
         sender.alpha = 0.3
     }
-
-
 }
