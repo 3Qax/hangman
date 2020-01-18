@@ -40,16 +40,25 @@ final class StartViewController: ViewController<StartView> {
         customView.useRandomWordSwitch.rx.isOn
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] useRandomWord in
-                UIViewPropertyAnimator.runningPropertyAnimator(
-                    withDuration: 0.3,
-                    delay: 0.0,
-                    options: .curveLinear,
-                    animations: {
-                        self?.customView.additionalContentStackView
-                                            .arrangedSubviews
-                                            .forEach({ $0.isHidden = useRandomWord })
+                self?.customView.additionalContentStackView
+                .arrangedSubviews
+                .forEach({ view in
+                    UIViewPropertyAnimator.runningPropertyAnimator(
+                        withDuration: 0.25,
+                        delay: 0.0,
+                        options: .curveLinear,
+                        animations: {
+                            view.alpha = useRandomWord ? 0.0 : 1.0
+                            view.isHidden = useRandomWord
+                        },
+                        completion: { _ in
+                            if useRandomWord { self?.customView.endEditing(true)
+                            } else { self?.customView.customWordTextField.becomeFirstResponder() }
+                        }
+                    )
                 })
-            }).disposed(by: disposeBag)
+            })
+            .disposed(by: disposeBag)
 
         customView.playButton.rx.tap
             // it's safe to force unwrap here since button cannot be tap when text is nil
@@ -66,12 +75,13 @@ final class StartViewController: ViewController<StartView> {
                     duration: 0.25,
                     options: .transitionCrossDissolve,
                     animations: {
-                        self.customView.playButton.backgroundColor = areCorrect ? UIColor.defaultYellow : UIColor.darkGray
+                        self.customView.playButton.backgroundColor = areCorrect ? .defaultYellow : .darkGray
                 })
             })
             .disposed(by: disposeBag)
 
         customView.customWordTextField.rx.text.orEmpty
+            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .bind(to: viewModel.customWord)
             .disposed(by: disposeBag)
 
