@@ -15,6 +15,11 @@ protocol GameViewControllerDelegate: AnyObject {
     func didLoseGame()
 }
 
+enum GameConfiguration {
+    case randomWord
+    case custom(word: String)
+}
+
 final class GameViewController: UIViewController {
 
     private let customView: GameView
@@ -26,12 +31,9 @@ final class GameViewController: UIViewController {
     weak var coordinator: GameViewControllerDelegate?
 
     init(gameModel: GameModel, coordinator: GameViewControllerDelegate) {
-
         self.customView = GameView()
         self.viewModel = GameViewModel(model: gameModel)
-
         self.coordinator = coordinator
-
         super.init(nibName: nil, bundle: nil)
 
     }

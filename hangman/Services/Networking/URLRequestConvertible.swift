@@ -24,7 +24,7 @@ extension URLRequestConvertible where Self: Request {
         if let parameters = parameters, !parameters.isEmpty {
             urlString.append("?")
             parameters.forEach {
-                urlString.append("/\($0.key)=\($0.value)")
+                urlString.append("\($0.key)=\($0.value)")
             }
         }
         // Create URL out of urlString.

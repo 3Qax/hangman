@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 protocol StartViewControllerDelegate: AnyObject {
-    func startGame(word: String)
+    func startGame(with configuration: GameConfiguration)
 }
 
 final class StartViewController: ViewController<StartView> {
@@ -61,8 +61,13 @@ final class StartViewController: ViewController<StartView> {
             .disposed(by: disposeBag)
 
         customView.playButton.rx.tap
-            // it's safe to force unwrap here since button cannot be tap when text is nil
-            .subscribe({ [unowned self] _ in self.coordinator?.startGame(word: self.customView.customWordTextField.text!) })
+            .subscribe({ [unowned self] _ in
+                if self.viewModel.useRandomWord.value {
+                    self.coordinator?.startGame(with: .randomWord)
+                } else if self.viewModel.allowGameStart.value {
+                    self.coordinator?.startGame(with: .custom(word: self.customView.customWordTextField.text!))
+                }
+            })
             .disposed(by: disposeBag)
 
 

@@ -8,10 +8,21 @@
 
 import Foundation
 
-
-
 struct GameModel {
 
-    let originalWord: String
+    private(set) var originalWord: String
 
+    private let networkDispatcher = NetworkDispatcher()
+
+    init(word: String? = nil) {
+        if let word = word {
+            originalWord = word
+        } else {
+            let request = PuzzleRequest().asURLRequest()
+            networkDispatcher.execute(urlRequest: request) { (result: Result<PuzzleResponse, Error>) in
+                // handle response
+            }
+            originalWord = "XD"
+        }
+    }
 }

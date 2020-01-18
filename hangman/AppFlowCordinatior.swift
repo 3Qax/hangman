@@ -30,12 +30,16 @@ final class AppFlowCoordinator: Coordinator {
 
 extension AppFlowCoordinator: StartViewControllerDelegate {
 
-    func startGame(word: String) {
-        let gameViewController = GameViewController(gameModel: GameModel(originalWord: word),
-                                                    coordinator: self)
-        navigationController?.pushViewController(gameViewController, animated: true)
+    func startGame(with configuration: GameConfiguration) {
+        switch configuration {
+        case .randomWord:
+            let gameViewController = GameViewController(gameModel: GameModel(), coordinator: self)
+            navigationController?.pushViewController(gameViewController, animated: true)
+        case .custom(let word):
+            let gameViewController = GameViewController(gameModel: GameModel(word: word), coordinator: self)
+            navigationController?.pushViewController(gameViewController, animated: true)
+        }
     }
-
 }
 
 extension AppFlowCoordinator: GameViewControllerDelegate {
@@ -49,5 +53,4 @@ extension AppFlowCoordinator: GameViewControllerDelegate {
         print("Lost a game!")
         navigationController?.popViewController(animated: true)
     }
-
 }
