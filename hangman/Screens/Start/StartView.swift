@@ -86,12 +86,13 @@ final class StartView: View {
         super.init()
         self.backgroundColor = UIColor.defaultBackground
 
-        self.addSubview(hangmanTitle)
+        addSubviews(hangmanTitle, barImageView, barWrapper, folkImageView, playButton, additionalContentStackView, useRandomWordLabel, useRandomWordSwitch)
+        bringSubviewToFront(playButton)
+        
         hangmanTitle.translatesAutoresizingMaskIntoConstraints = false
         hangmanTitle.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
         hangmanTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0).isActive = true
 
-        self.addSubviews(barImageView, barWrapper)
         barImageView.setAnchorPoint(CGPoint(x: 0.0, y: 0.5))
         barWrapper.translatesAutoresizingMaskIntoConstraints = false
         barImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -103,22 +104,17 @@ final class StartView: View {
         barImageView.topAnchor.constraint(equalTo: barWrapper.topAnchor).isActive = true
         barImageView.bottomAnchor.constraint(equalTo: barWrapper.bottomAnchor).isActive = true
 
-
-        self.addSubview(folkImageView)
         folkImageView.translatesAutoresizingMaskIntoConstraints = false
         folkImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0).isActive = true
         folkImageView.topAnchor.constraint(equalTo: barImageView.bottomAnchor, constant: -25).isActive = true
         folkImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
 
-
-        self.addSubview(playButton)
         playButton.translatesAutoresizingMaskIntoConstraints = false
         playButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
         playButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
         playButton.bottomAnchor.constraint(equalTo: keyboardTopLayoutGuide.topAnchor, constant: -20).isActive = true
         playButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
 
-        self.addSubview(additionalContentStackView)
         additionalContentStackView.translatesAutoresizingMaskIntoConstraints = false
         additionalContentStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
         additionalContentStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
@@ -127,13 +123,12 @@ final class StartView: View {
         additionalContentStackView.addArrangedSubview(customWordTextField)
         customWordTextField.translatesAutoresizingMaskIntoConstraints = false
         customWordTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        customWordTextField.widthAnchor.constraint(equalTo: additionalContentStackView.widthAnchor).isActive = true
 
-        self.addSubview(useRandomWordLabel)
         useRandomWordLabel.translatesAutoresizingMaskIntoConstraints = false
         useRandomWordLabel.leadingAnchor.constraint(equalTo: playButton.leadingAnchor, constant: 15).isActive = true
         useRandomWordLabel.bottomAnchor.constraint(equalTo: additionalContentStackView.topAnchor, constant: -10).isActive = true
 
-        self.addSubview(useRandomWordSwitch)
         useRandomWordSwitch.translatesAutoresizingMaskIntoConstraints = false
         useRandomWordSwitch.trailingAnchor.constraint(equalTo: playButton.trailingAnchor, constant: -5).isActive = true
         useRandomWordSwitch.centerYAnchor.constraint(equalTo: useRandomWordLabel.centerYAnchor).isActive = true
