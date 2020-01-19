@@ -26,17 +26,23 @@ final class AppFlowCoordinator: Coordinator {
         window.makeKeyAndVisible()
     }
 
+    private func UITesting() -> Bool {
+        return ProcessInfo.processInfo.arguments.contains("UI-TESTING")
+    }
+
 }
 
 extension AppFlowCoordinator: StartViewControllerDelegate {
 
     func startGame(with configuration: GameConfiguration) {
+        print(UITesting())
+        let dispatcher: Dispatcher = UITesting() ? MockedDispatcher() : NetworkDispatcher()
         switch configuration {
         case .randomWord:
-            let gameViewController = GameViewController(gameModel: GameModel(), coordinator: self)
+            let gameViewController = GameViewController(gameModel: GameModel(dispatcher: dispatcher), coordinator: self)
             navigationController?.pushViewController(gameViewController, animated: true)
         case .custom(let word):
-            let gameViewController = GameViewController(gameModel: GameModel(word: word), coordinator: self)
+            let gameViewController = GameViewController(gameModel: GameModel(word: word, dispatcher: dispatcher), coordinator: self)
             navigationController?.pushViewController(gameViewController, animated: true)
         }
     }

@@ -17,7 +17,7 @@ final class GameModel {
             single(.success(customWord))
         } else {
             let request = PuzzleRequest().asURLRequest()
-            self?.networkDispatcher.execute(urlRequest: request) { (result: Result<PuzzleResponse, Error>) in
+            self?.dispatcher.execute(urlRequest: request) { (result: Result<PuzzleResponse, Error>) in
                 switch result {
                 case .success(let data): single(.success(data.puzzle))
                 case .failure(let reason): single(.error(reason))
@@ -27,10 +27,11 @@ final class GameModel {
         return disposable
     }
 
-    private let networkDispatcher = NetworkDispatcher()
+    private let dispatcher: Dispatcher
     private let customWord: String?
 
-    init(word: String? = nil) {
+    init(word: String? = nil, dispatcher: Dispatcher) {
+        self.dispatcher = dispatcher
         customWord = word
     }
 }

@@ -12,7 +12,7 @@
 		194F1E1B23286CD1004C31A8 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194F1E1A23286CD1004C31A8 /* StartViewController.swift */; };
 		194F1E2023286CD2004C31A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 194F1E1F23286CD2004C31A8 /* Assets.xcassets */; };
 		194F1E2323286CD2004C31A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 194F1E2123286CD2004C31A8 /* LaunchScreen.storyboard */; };
-		194F1E2E23286CD2004C31A8 /* hangmanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194F1E2D23286CD2004C31A8 /* hangmanUITests.swift */; };
+		194F1E2E23286CD2004C31A8 /* hangmanGameScreenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194F1E2D23286CD2004C31A8 /* hangmanGameScreenTests.swift */; };
 		194F1E3A23286D1C004C31A8 /* AppFlowCordinatior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194F1E3923286D1C004C31A8 /* AppFlowCordinatior.swift */; };
 		194F1E3C23286D28004C31A8 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194F1E3B23286D28004C31A8 /* Coordinator.swift */; };
 		194F1E4523286D74004C31A8 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194F1E4123286D73004C31A8 /* HTTPMethod.swift */; };
@@ -33,6 +33,9 @@
 		19A4111823D243DE006DD57D /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4111623D243DE006DD57D /* View.swift */; };
 		19BC90E92354EEFF00385015 /* MessageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BC90E82354EEFF00385015 /* MessageBox.swift */; };
 		19DCABE423D4BFD10090D430 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DCABE323D4BFD10090D430 /* ConfettiView.swift */; };
+		19DCABE623D50FA80090D430 /* hangmanStartScreenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DCABE523D50FA80090D430 /* hangmanStartScreenTests.swift */; };
+		19DCABE823D50FE60090D430 /* hangmanSummaryScreenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DCABE723D50FE60090D430 /* hangmanSummaryScreenTests.swift */; };
+		19DCABEB23D517080090D430 /* MockedDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DCABE923D516F10090D430 /* MockedDispatcher.swift */; };
 		19E13C6A23D35F34006540FD /* PuzzleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E13C6923D35F34006540FD /* PuzzleRequest.swift */; };
 		19E13C6C23D35F3C006540FD /* PuzzleResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E13C6B23D35F3C006540FD /* PuzzleResult.swift */; };
 		19E13C6E23D3C96E006540FD /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E13C6D23D3C96E006540FD /* SummaryView.swift */; };
@@ -66,7 +69,7 @@
 		194F1E2223286CD2004C31A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		194F1E2423286CD2004C31A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		194F1E2923286CD2004C31A8 /* hangmanUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hangmanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		194F1E2D23286CD2004C31A8 /* hangmanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hangmanUITests.swift; sourceTree = "<group>"; };
+		194F1E2D23286CD2004C31A8 /* hangmanGameScreenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hangmanGameScreenTests.swift; sourceTree = "<group>"; };
 		194F1E2F23286CD2004C31A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		194F1E3923286D1C004C31A8 /* AppFlowCordinatior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFlowCordinatior.swift; sourceTree = "<group>"; };
 		194F1E3B23286D28004C31A8 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -89,6 +92,9 @@
 		19A4111623D243DE006DD57D /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		19BC90E82354EEFF00385015 /* MessageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBox.swift; sourceTree = "<group>"; };
 		19DCABE323D4BFD10090D430 /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConfettiView.swift; path = hangman/Extensions/ConfettiView.swift; sourceTree = SOURCE_ROOT; };
+		19DCABE523D50FA80090D430 /* hangmanStartScreenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hangmanStartScreenTests.swift; sourceTree = "<group>"; };
+		19DCABE723D50FE60090D430 /* hangmanSummaryScreenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hangmanSummaryScreenTests.swift; sourceTree = "<group>"; };
+		19DCABE923D516F10090D430 /* MockedDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedDispatcher.swift; sourceTree = "<group>"; };
 		19E13C6923D35F34006540FD /* PuzzleRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleRequest.swift; sourceTree = "<group>"; };
 		19E13C6B23D35F3C006540FD /* PuzzleResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleResult.swift; sourceTree = "<group>"; };
 		19E13C6D23D3C96E006540FD /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SummaryView.swift; path = hangman/Services/Networking/Results/SummaryView.swift; sourceTree = SOURCE_ROOT; };
@@ -165,8 +171,11 @@
 		194F1E2C23286CD2004C31A8 /* hangmanUITests */ = {
 			isa = PBXGroup;
 			children = (
-				194F1E2D23286CD2004C31A8 /* hangmanUITests.swift */,
 				194F1E2F23286CD2004C31A8 /* Info.plist */,
+				19DCABE523D50FA80090D430 /* hangmanStartScreenTests.swift */,
+				194F1E2D23286CD2004C31A8 /* hangmanGameScreenTests.swift */,
+				19DCABE723D50FE60090D430 /* hangmanSummaryScreenTests.swift */,
+				19DCABE923D516F10090D430 /* MockedDispatcher.swift */,
 			);
 			path = hangmanUITests;
 			sourceTree = "<group>";
@@ -528,6 +537,7 @@
 				19A4110E23D23F0E006DD57D /* InsetsTextField.swift in Sources */,
 				19F4E20D2328FCF600773303 /* UIFont+Extension.swift in Sources */,
 				194F1E4623286D74004C31A8 /* Request.swift in Sources */,
+				19DCABEB23D517080090D430 /* MockedDispatcher.swift in Sources */,
 				194F1E5B232876C0004C31A8 /* GameViewController.swift in Sources */,
 				19A4111823D243DE006DD57D /* View.swift in Sources */,
 				194F1E5223287207004C31A8 /* UIColor+Extension.swift in Sources */,
@@ -555,7 +565,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				194F1E2E23286CD2004C31A8 /* hangmanUITests.swift in Sources */,
+				194F1E2E23286CD2004C31A8 /* hangmanGameScreenTests.swift in Sources */,
+				19DCABE823D50FE60090D430 /* hangmanSummaryScreenTests.swift in Sources */,
+				19DCABE623D50FA80090D430 /* hangmanStartScreenTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -743,7 +755,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CUAEE97JF5;
+				DEVELOPMENT_TEAM = 578XQTAMHL;
 				INFOPLIST_FILE = hangmanUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -764,7 +776,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CUAEE97JF5;
+				DEVELOPMENT_TEAM = 578XQTAMHL;
 				INFOPLIST_FILE = hangmanUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

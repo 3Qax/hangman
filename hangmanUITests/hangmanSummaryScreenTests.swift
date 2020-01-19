@@ -1,14 +1,14 @@
 //
-//  hangmanUITests.swift
+//  hangmanSummaryScreenTests.swift
 //  hangmanUITests
 //
-//  Created by Jakub Towarek on 11/09/2019.
-//  Copyright © 2019 Jakub Towarek. All rights reserved.
+//  Created by Jakub Towarek on 19/01/2020.
+//  Copyright © 2020 Jakub Towarek. All rights reserved.
 //
 
 import XCTest
 
-class hangmanUITests: XCTestCase {
+class hangmanSummaryScreenTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
