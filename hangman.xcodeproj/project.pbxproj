@@ -32,8 +32,14 @@
 		19A4111723D243DE006DD57D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4111523D243DE006DD57D /* ViewController.swift */; };
 		19A4111823D243DE006DD57D /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4111623D243DE006DD57D /* View.swift */; };
 		19BC90E92354EEFF00385015 /* MessageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BC90E82354EEFF00385015 /* MessageBox.swift */; };
+		19DCABE423D4BFD10090D430 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DCABE323D4BFD10090D430 /* ConfettiView.swift */; };
 		19E13C6A23D35F34006540FD /* PuzzleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E13C6923D35F34006540FD /* PuzzleRequest.swift */; };
 		19E13C6C23D35F3C006540FD /* PuzzleResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E13C6B23D35F3C006540FD /* PuzzleResult.swift */; };
+		19E13C6E23D3C96E006540FD /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E13C6D23D3C96E006540FD /* SummaryView.swift */; };
+		19E13C7023D3C97F006540FD /* SummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E13C6F23D3C97F006540FD /* SummaryViewModel.swift */; };
+		19E13C7223D3C98B006540FD /* SummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E13C7123D3C98B006540FD /* SummaryModel.swift */; };
+		19E13C7423D3C998006540FD /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E13C7323D3C998006540FD /* SummaryViewController.swift */; };
+		19E13C7623D4A433006540FD /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E13C7523D4A433006540FD /* UIStackView+Extension.swift */; };
 		19F4311C2350DE6B006C0296 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F4311B2350DE6B006C0296 /* UIView+Extension.swift */; };
 		19F4E20B2328FBCA00773303 /* AllerDisplay.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 194F1E4D2328712E004C31A8 /* AllerDisplay.ttf */; };
 		19F4E20D2328FCF600773303 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F4E20C2328FCF600773303 /* UIFont+Extension.swift */; };
@@ -82,8 +88,14 @@
 		19A4111523D243DE006DD57D /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		19A4111623D243DE006DD57D /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		19BC90E82354EEFF00385015 /* MessageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBox.swift; sourceTree = "<group>"; };
+		19DCABE323D4BFD10090D430 /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConfettiView.swift; path = hangman/Extensions/ConfettiView.swift; sourceTree = SOURCE_ROOT; };
 		19E13C6923D35F34006540FD /* PuzzleRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleRequest.swift; sourceTree = "<group>"; };
 		19E13C6B23D35F3C006540FD /* PuzzleResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleResult.swift; sourceTree = "<group>"; };
+		19E13C6D23D3C96E006540FD /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SummaryView.swift; path = hangman/Services/Networking/Results/SummaryView.swift; sourceTree = SOURCE_ROOT; };
+		19E13C6F23D3C97F006540FD /* SummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SummaryViewModel.swift; path = hangman/Services/Networking/Results/SummaryViewModel.swift; sourceTree = SOURCE_ROOT; };
+		19E13C7123D3C98B006540FD /* SummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SummaryModel.swift; path = hangman/Services/Networking/Results/SummaryModel.swift; sourceTree = SOURCE_ROOT; };
+		19E13C7323D3C998006540FD /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SummaryViewController.swift; path = hangman/Services/Networking/Results/SummaryViewController.swift; sourceTree = SOURCE_ROOT; };
+		19E13C7523D4A433006540FD /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		19F4311B2350DE6B006C0296 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		19F4E20C2328FCF600773303 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		37A2485BAEEC45C0632917F9 /* Pods-hangman.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hangman.debug.xcconfig"; path = "Target Support Files/Pods-hangman/Pods-hangman.debug.xcconfig"; sourceTree = "<group>"; };
@@ -231,6 +243,11 @@
 		194F1E4C23286E35004C31A8 /* Summary */ = {
 			isa = PBXGroup;
 			children = (
+				19E13C6D23D3C96E006540FD /* SummaryView.swift */,
+				19E13C7323D3C998006540FD /* SummaryViewController.swift */,
+				19E13C6F23D3C97F006540FD /* SummaryViewModel.swift */,
+				19E13C7123D3C98B006540FD /* SummaryModel.swift */,
+				19DCABE323D4BFD10090D430 /* ConfettiView.swift */,
 			);
 			path = Summary;
 			sourceTree = "<group>";
@@ -243,6 +260,7 @@
 				19F4E20C2328FCF600773303 /* UIFont+Extension.swift */,
 				19F4311B2350DE6B006C0296 /* UIView+Extension.swift */,
 				19A4110D23D23F0E006DD57D /* NSLayoutConstraint+Extension.swift */,
+				19E13C7523D4A433006540FD /* UIStackView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -501,6 +519,7 @@
 			files = (
 				19E13C6C23D35F3C006540FD /* PuzzleResult.swift in Sources */,
 				194F1E4723286D74004C31A8 /* URLRequestConvertible.swift in Sources */,
+				19DCABE423D4BFD10090D430 /* ConfettiView.swift in Sources */,
 				19E13C6A23D35F34006540FD /* PuzzleRequest.swift in Sources */,
 				194F1E552328747B004C31A8 /* StartView.swift in Sources */,
 				194F1E3C23286D28004C31A8 /* Coordinator.swift in Sources */,
@@ -512,15 +531,20 @@
 				194F1E5B232876C0004C31A8 /* GameViewController.swift in Sources */,
 				19A4111823D243DE006DD57D /* View.swift in Sources */,
 				194F1E5223287207004C31A8 /* UIColor+Extension.swift in Sources */,
+				19E13C6E23D3C96E006540FD /* SummaryView.swift in Sources */,
 				19F4311C2350DE6B006C0296 /* UIView+Extension.swift in Sources */,
 				194F1E5F2328775B004C31A8 /* GameViewModel.swift in Sources */,
 				194F1E4823286D74004C31A8 /* NetworkDispatcher.swift in Sources */,
 				194F1E1B23286CD1004C31A8 /* StartViewController.swift in Sources */,
 				194F1E3A23286D1C004C31A8 /* AppFlowCordinatior.swift in Sources */,
 				194F1E4523286D74004C31A8 /* HTTPMethod.swift in Sources */,
+				19E13C7023D3C97F006540FD /* SummaryViewModel.swift in Sources */,
+				19E13C7423D3C998006540FD /* SummaryViewController.swift in Sources */,
 				194F1E1923286CD1004C31A8 /* AppDelegate.swift in Sources */,
+				19E13C7623D4A433006540FD /* UIStackView+Extension.swift in Sources */,
 				194F1E5D23287742004C31A8 /* GameView.swift in Sources */,
 				19BC90E92354EEFF00385015 /* MessageBox.swift in Sources */,
+				19E13C7223D3C98B006540FD /* SummaryModel.swift in Sources */,
 				194F1E57232874A1004C31A8 /* StartViewModel.swift in Sources */,
 				1916DB682330F48400DF103E /* GameModel.swift in Sources */,
 				19A4110F23D23F0E006DD57D /* NSLayoutConstraint+Extension.swift in Sources */,

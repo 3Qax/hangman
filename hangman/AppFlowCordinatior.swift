@@ -44,13 +44,25 @@ extension AppFlowCoordinator: StartViewControllerDelegate {
 
 extension AppFlowCoordinator: GameViewControllerDelegate {
 
-    func didWinGame() {
-        print("Won a game!")
-        navigationController?.popViewController(animated: true)
+    func didWinGame(summary: SummaryModel) {
+        let summary = SummaryViewController(
+            viewModel: SummaryViewModel(model: summary),
+            coordinator: self
+        )
+        navigationController?.pushViewController(summary, animated: true)
     }
 
-    func didLoseGame() {
-        print("Lost a game!")
-        navigationController?.popViewController(animated: true)
+    func didLoseGame(summary: SummaryModel) {
+        let summary = SummaryViewController(
+            viewModel: SummaryViewModel(model: summary),
+            coordinator: self
+        )
+        navigationController?.pushViewController(summary, animated: true)
+    }
+}
+
+extension AppFlowCoordinator: SummaryViewControllerDelegate {
+    func playAgain() {
+        start()
     }
 }

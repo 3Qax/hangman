@@ -11,8 +11,8 @@ import RxSwift
 import RxCocoa
 
 protocol GameViewControllerDelegate: AnyObject {
-    func didWinGame()
-    func didLoseGame()
+    func didWinGame(summary: SummaryModel)
+    func didLoseGame(summary: SummaryModel)
 }
 
 enum GameConfiguration {
@@ -146,8 +146,8 @@ final class GameViewController: UIViewController {
         viewModel.game
             .observeOn(MainScheduler.instance)
             .subscribe(
-                onError: { _ in self.coordinator?.didLoseGame() },
-                onCompleted: { self.coordinator?.didWinGame() }
+                onError: { _ in self.coordinator?.didLoseGame(summary: self.viewModel.generateSummary(didWin: false)) },
+                onCompleted: { self.coordinator?.didWinGame(summary: self.viewModel.generateSummary(didWin: true)) }
             )
             .disposed(by: disposableBag)
     }

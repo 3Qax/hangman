@@ -43,6 +43,7 @@ final class GameViewModel {
     // onNext events are guesses, onCompletion is win, onError is lose
     let game = PublishSubject<Character>()
 
+    private var word: String?
     private let model: GameModel
     private let disposableBag = DisposeBag()
 
@@ -51,6 +52,7 @@ final class GameViewModel {
 
         model.originalWord.subscribe(
             onSuccess: { word in
+                self.word = word
                 // Masked the word initially
                 self.maskedWord.accept(String(word.map({ return !$0.isWhitespace ? "_" : $0})))
 
@@ -112,6 +114,14 @@ final class GameViewModel {
                 if number >= 1 { self.isHeadVisible.accept(true) }
             }
             ).disposed(by: disposableBag)
+    }
 
+    func generateSummary(didWin: Bool) -> SummaryModel {
+        return SummaryModel(
+            didWin: didWin,
+            timeNeeded: TimeInterval.random(in: 1.0...120.0),
+            guessedLetters: guessedLetters.value,
+            wordToGuess: word!
+        )
     }
 }
