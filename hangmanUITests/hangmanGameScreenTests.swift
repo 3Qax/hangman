@@ -32,8 +32,7 @@ class hangmanGameScreenTests: XCTestCase {
 
     func testRandomWordGetting() {
         XCTAssert(sut.buttons["PLAY"].exists)
-        sut.buttons["PLAY"].tap()
-        XCTAssert(sut.staticTexts["___________"].waitForExistence(timeout: 2.0))
+        
     }
 
     func testCustomWordGetting() {

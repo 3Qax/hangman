@@ -159,6 +159,5 @@ final class StartViewController: ViewController<StartView> {
             })
         }
     }
-
 }
 

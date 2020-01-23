@@ -8,7 +8,7 @@
 
 import Foundation
 
-let accIDs = AccessibilityIdentifiers()
+
 
 struct AccessibilityIdentifiers {
 

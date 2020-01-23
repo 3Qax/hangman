@@ -14,6 +14,7 @@ final class SummaryView: View {
         let label = UILabel()
         label.font = UIFont(name: UIFont.allerDisplayName, size: 70)
         label.textColor = UIColor.defaultYellow
+        label.accessibilityIdentifier = AccessibilityIdentifiers.summaryScreenResultLabel
         return label
     }()
 
@@ -21,6 +22,7 @@ final class SummaryView: View {
         let label = UILabel()
         label.font = UIFont(name: UIFont.allerDisplayName, size: 28)
         label.textColor = UIColor.defaultPurple
+        label.accessibilityIdentifier = AccessibilityIdentifiers.summaryScreenDescriptionLabel
         return label
     }()
 
@@ -35,13 +37,14 @@ final class SummaryView: View {
     }()
 
     lazy var playButton: UIButton = {
-         var button = UIButton()
-         button.backgroundColor = UIColor.defaultYellow
-         button.setTitleColor(.white, for: .normal)
-         button.setTitle("TRY ONCE AGAIN", for: .normal)
-         button.titleLabel?.font = UIFont(name: UIFont.allerDisplayName, size: 28)
-         button.layer.cornerRadius = 25
-         return button
+        var button = UIButton()
+        button.backgroundColor = UIColor.defaultYellow
+        button.setTitleColor(.white, for: .normal)
+        button.setTitle("TRY ONCE AGAIN", for: .normal)
+        button.titleLabel?.font = UIFont(name: UIFont.allerDisplayName, size: 28)
+        button.layer.cornerRadius = 25
+        button.accessibilityIdentifier = AccessibilityIdentifiers.summaryScreenPlayAgainButton
+        return button
      }()
 
 
