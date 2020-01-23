@@ -32,6 +32,7 @@ final class StartViewController: ViewController<StartView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupKeyboardHandling()
+        setupAccessibilityIdentifiers()
 
         customView.useRandomWordSwitch.rx.isOn
             .bind(to: viewModel.useRandomWord)
@@ -159,6 +160,5 @@ final class StartViewController: ViewController<StartView> {
             })
         }
     }
-
 }
 

@@ -15,8 +15,8 @@ final class GameView: UIView {
         let image = UIImage(named: "bar", in: bundle, compatibleWith: nil)
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
+        imageView.accessibilityIdentifier = AccessibilityIdentifiers.gameScreenBar
         return imageView
-
     }()
 
 
@@ -30,6 +30,7 @@ final class GameView: UIView {
         let image = UIImage(named: "head", in: bundle, compatibleWith: nil)
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
+        imageView.accessibilityIdentifier = AccessibilityIdentifiers.gameScreenFolkHeadImageView
         return imageView
 
     }()
@@ -38,6 +39,7 @@ final class GameView: UIView {
         let image = UIImage(named: "neck", in: bundle, compatibleWith: nil)
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
+        imageView.accessibilityIdentifier = AccessibilityIdentifiers.gameScreenFolkNeckImageView
         return imageView
 
     }()
@@ -46,6 +48,7 @@ final class GameView: UIView {
         let image = UIImage(named: "corpus", in: bundle, compatibleWith: nil)
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
+        imageView.accessibilityIdentifier = AccessibilityIdentifiers.gameScreenFolkCorpusImageView
         return imageView
 
     }()
@@ -54,6 +57,7 @@ final class GameView: UIView {
         let image = UIImage(named: "left-arm", in: bundle, compatibleWith: nil)
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
+        imageView.accessibilityIdentifier = AccessibilityIdentifiers.gameScreenFolkLeftArmImageView
         return imageView
 
     }()
@@ -62,6 +66,7 @@ final class GameView: UIView {
         let image = UIImage(named: "right-arm", in: bundle, compatibleWith: nil)
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
+        imageView.accessibilityIdentifier = AccessibilityIdentifiers.gameScreenFolkRightArmImageView
         return imageView
 
     }()
@@ -70,6 +75,7 @@ final class GameView: UIView {
         let image = UIImage(named: "left-hand", in: bundle, compatibleWith: nil)
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
+        imageView.accessibilityIdentifier = AccessibilityIdentifiers.gameScreenFolkLeftHandImageView
         return imageView
 
     }()
@@ -78,6 +84,7 @@ final class GameView: UIView {
         let image = UIImage(named: "right-hand", in: bundle, compatibleWith: nil)
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
+        imageView.accessibilityIdentifier = AccessibilityIdentifiers.gameScreenFolkRightHandImageView
         return imageView
 
     }()
@@ -86,6 +93,7 @@ final class GameView: UIView {
         let image = UIImage(named: "left-leg", in: bundle, compatibleWith: nil)
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
+        imageView.accessibilityIdentifier = AccessibilityIdentifiers.gameScreenFolkLeftLegImageView
         return imageView
 
     }()
@@ -94,6 +102,7 @@ final class GameView: UIView {
         let image = UIImage(named: "right-leg", in: bundle, compatibleWith: nil)
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
+        imageView.accessibilityIdentifier = AccessibilityIdentifiers.gameScreenFolkRightLegImageView
         return imageView
 
     }()
@@ -102,6 +111,7 @@ final class GameView: UIView {
         let image = UIImage(named: "left-foot", in: bundle, compatibleWith: nil)
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
+        imageView.accessibilityIdentifier = AccessibilityIdentifiers.gameScreenFolkLeftFootImageView
         return imageView
 
     }()
@@ -110,6 +120,7 @@ final class GameView: UIView {
         let image = UIImage(named: "right-foot", in: bundle, compatibleWith: nil)
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
+        imageView.accessibilityIdentifier = AccessibilityIdentifiers.gameScreenFolkRightFootImageView
         return imageView
 
     }()
@@ -120,6 +131,7 @@ final class GameView: UIView {
         label.textAlignment = .center
         label.textColor = UIColor.defaultPurple
         label.adjustsFontSizeToFitWidth = true
+        label.accessibilityIdentifier = AccessibilityIdentifiers.gameScreenHiddenWordLabel
         return label
     }()
 
@@ -129,6 +141,7 @@ final class GameView: UIView {
         stackView.distribution = .equalCentering
         stackView.alignment = .center
         stackView.spacing = 10
+        stackView.accessibilityIdentifier = AccessibilityIdentifiers.gameScreenKeyboard
         return stackView
     }()
 

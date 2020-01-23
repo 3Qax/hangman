@@ -15,6 +15,7 @@ final class StartView: View {
         label.font = UIFont(name: UIFont.allerDisplayName, size: 70)
         label.text = "HANGMAN"
         label.textColor = UIColor.defaultPurple
+        label.accessibilityIdentifier = AccessibilityIdentifiers.startScreenTitleLabel
         return label
     }()
     let barWrapper = UIView()
@@ -38,12 +39,14 @@ final class StartView: View {
         label.font = UIFont(name: UIFont.allerDisplayName, size: 28)
         label.text = "RANDOM WORD"
         label.textColor = UIColor.defaultYellow
+        label.accessibilityIdentifier = AccessibilityIdentifiers.startScreenRandomWordLabel
         return label
     }()
     let useRandomWordSwitch: UISwitch = {
         let swt = UISwitch()
         swt.onTintColor = UIColor.defaultYellow
         swt.isOn = true
+        swt.accessibilityIdentifier = AccessibilityIdentifiers.startScreenRandomWordSwitch
         return swt
     }()
     let additionalContentStackView: UIStackView = {
@@ -68,6 +71,7 @@ final class StartView: View {
         textField.layer.borderWidth = 4
         textField.layer.borderColor = UIColor.defaultYellow.cgColor
         textField.layer.cornerRadius = 15
+        textField.accessibilityIdentifier = AccessibilityIdentifiers.startScreenCustomWordTextField
         return textField
     }()
     let playButton: UIButton = {
@@ -77,6 +81,7 @@ final class StartView: View {
         button.setTitle("PLAY", for: .normal)
         button.titleLabel?.font = UIFont(name: UIFont.allerDisplayName, size: 28)
         button.layer.cornerRadius = 25
+        button.accessibilityIdentifier = AccessibilityIdentifiers.startScreenStartButton
         return button
     }()
 
