@@ -27,10 +27,8 @@ class MockedDataTask: URLSessionDataTask {
     }
 
     override func resume() {
-        print(urlRequest.url!.absoluteString)
-        guard let json = ProcessInfo.processInfo.environment["AAA"]
-            else { fatalError()}
-
+        let encodedUrl = urlRequest.url!.absoluteString.addingPercentEncoding(withAllowedCharacters: .environmentalVariableNameAllowed)!
+        guard let json = ProcessInfo.processInfo.environment[encodedUrl] else { fatalError() }
         let response = HTTPURLResponse(url: urlRequest.url!, statusCode: 200, httpVersion: nil, headerFields: nil)
         let data = json.data(using: .utf8)
         completion(data, response, nil)
