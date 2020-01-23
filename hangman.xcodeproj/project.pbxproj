@@ -26,6 +26,7 @@
 		194F1E5B232876C0004C31A8 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194F1E5A232876C0004C31A8 /* GameViewController.swift */; };
 		194F1E5D23287742004C31A8 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194F1E5C23287742004C31A8 /* GameView.swift */; };
 		194F1E5F2328775B004C31A8 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194F1E5E2328775B004C31A8 /* GameViewModel.swift */; };
+		198BDD9223D9C2F9005EA8D2 /* AccessibilityIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A531A223D9AD7B0060E9DF /* AccessibilityIdentifier.swift */; };
 		19A4110E23D23F0E006DD57D /* InsetsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4110C23D23F0E006DD57D /* InsetsTextField.swift */; };
 		19A4110F23D23F0E006DD57D /* NSLayoutConstraint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4110D23D23F0E006DD57D /* NSLayoutConstraint+Extension.swift */; };
 		19A4111323D23FB4006DD57D /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A4111223D23FB4006DD57D /* Notification+Extension.swift */; };
@@ -584,6 +585,7 @@
 			files = (
 				19A531A023D9A9AF0060E9DF /* CharacterSet+Extension.swift in Sources */,
 				194F1E2E23286CD2004C31A8 /* hangmanGameScreenTests.swift in Sources */,
+				198BDD9223D9C2F9005EA8D2 /* AccessibilityIdentifier.swift in Sources */,
 				19DCABE823D50FE60090D430 /* hangmanSummaryScreenTests.swift in Sources */,
 				19DCABE623D50FA80090D430 /* hangmanStartScreenTests.swift in Sources */,
 			);
