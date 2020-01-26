@@ -36,6 +36,7 @@ final class MessageBox: UIView {
         self.style = style
 
         super.init(frame: .zero)
+        self.accessibilityIdentifier = style == .warning ? AccessibilityIdentifiers.messageBoxWarning : AccessibilityIdentifiers.messageBoxError
 
         self.layer.cornerRadius = 10.0
 

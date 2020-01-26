@@ -55,6 +55,7 @@ final class StartView: View {
         stackView.alignment = .fill
         stackView.distribution = .equalSpacing
         stackView.spacing = 10
+        stackView.accessibilityIdentifier = AccessibilityIdentifiers.startScreenAdditionalContentStackView
         return stackView
     }()
     let customWordTextField: InsetsTextField = {

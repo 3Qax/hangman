@@ -20,11 +20,9 @@ struct AccessibilityIdentifiers {
 
     static var startScreenRandomWordSwitch: String { "startScreenRandomWordSwitch" }
 
+    static var startScreenAdditionalContentStackView: String { "startScreenAdditionalContentStackView" }
+
     static var startScreenCustomWordTextField: String { "startScreenCustomWordTextField" }
-
-    static var startScreenWarningMessage: String { "startScreenWarningMessage" }
-
-    static var startScreenErrorMessage: String { "startScreenErrorMessage" }
 
     static var startScreenStartButton: String { "startScreenStartButton" }
 
@@ -66,4 +64,9 @@ struct AccessibilityIdentifiers {
 
     static var summaryScreenPlayAgainButton: String { "summaryScreenPlayAgainButton" }
 
+    // MARK: - Message Box -
+
+    static var messageBoxWarning: String { "messageBoxWarning" }
+
+    static var messageBoxError: String { "messageBoxError" }
 }

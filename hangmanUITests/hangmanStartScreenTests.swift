@@ -10,25 +10,46 @@ import XCTest
 
 class hangmanStartScreenTests: XCTestCase {
 
+    let sut = XCUIApplication()
+
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        sut.launch()
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testStartValues() {
+        let randomWordSwitch: XCUIElement = sut.switches[AccessibilityIdentifiers.startScreenRandomWordSwitch]
+        XCTAssertEqual(randomWordSwitch.value as? String, "1")
+        XCTAssertTrue(sut.buttons[AccessibilityIdentifiers.startScreenStartButton].isEnabled)
     }
 
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+
+    func testCustomWordAppears() {
+        sut.switches[AccessibilityIdentifiers.startScreenRandomWordSwitch].tap()
+        XCTAssertTrue(sut.textFields[AccessibilityIdentifiers.startScreenCustomWordTextField].exists)
+        XCTAssertFalse(sut.buttons[AccessibilityIdentifiers.startScreenStartButton].isEnabled)
+    }
+
+    func testIfErrorMessageAppears() {
+        sut.switches[AccessibilityIdentifiers.startScreenRandomWordSwitch].tap()
+        let errorCount = sut.otherElements[AccessibilityIdentifiers.startScreenAdditionalContentStackView]
+            .descendants(matching: .other)
+            .matching(identifier: AccessibilityIdentifiers.messageBoxError)
+            .count
+
+        XCTAssertEqual(errorCount, 1)
+    }
+
+    func testIfErrorMessageDisappears() {
+        sut.switches[AccessibilityIdentifiers.startScreenRandomWordSwitch].tap()
+        let errorMessages = sut.otherElements[AccessibilityIdentifiers.startScreenAdditionalContentStackView]
+            .descendants(matching: .other)
+            .matching(identifier: AccessibilityIdentifiers.messageBoxError)
+
+        XCTAssertEqual(errorMessages.count, 1)
+        sut.textFields[AccessibilityIdentifiers.startScreenCustomWordTextField].typeText("TOWAREK")
+        sleep(1)
+        XCTAssertEqual(errorMessages.count, 0)
     }
 
 }
