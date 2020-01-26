@@ -51,18 +51,12 @@ final class SummaryView: View {
     override init() {
         super.init()
 
-        addSubviews(contentStackView, confettiView, playButton)
+        addSubviews(contentStackView, playButton)
 
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
         contentStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 60).isActive = true
         contentStackView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         contentStackView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-
-        confettiView.translatesAutoresizingMaskIntoConstraints = false
-        confettiView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
-        confettiView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        confettiView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        confettiView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
 
         playButton.translatesAutoresizingMaskIntoConstraints = false
         playButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
@@ -72,6 +66,13 @@ final class SummaryView: View {
     }
 
     func emitConfetti() {
+        addSubview(confettiView)
+        confettiView.accessibilityIdentifier = AccessibilityIdentifiers.summaryScreenConfettiView
+        confettiView.translatesAutoresizingMaskIntoConstraints = false
+        confettiView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
+        confettiView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        confettiView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        confettiView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         let colors: [UIColor] = [.red, .blue, .green, .yellow]
         let images: [UIImage] = [.heart, .star, .bolt, .square, .triangle]
         confettiView.emit(with: colors * images)

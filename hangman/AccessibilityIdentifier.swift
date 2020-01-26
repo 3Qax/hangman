@@ -64,6 +64,8 @@ struct AccessibilityIdentifiers {
 
     static var summaryScreenPlayAgainButton: String { "summaryScreenPlayAgainButton" }
 
+    static var summaryScreenConfettiView: String { "summaryScreenConfettiView" }
+
     // MARK: - Message Box -
 
     static var messageBoxWarning: String { "messageBoxWarning" }

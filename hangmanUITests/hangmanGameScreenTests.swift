@@ -65,7 +65,7 @@ class hangmanGameScreenTests: XCTestCase {
 
         XCTAssert(sut.buttons[AccessibilityIdentifiers.startScreenStartButton].waitForExistence(timeout: 5.0))
         sut.buttons[AccessibilityIdentifiers.startScreenStartButton].tap()
-        sut.buttons[AccessibilityIdentifiers.gameScreenHiddenWordLabel].waitForExistence(timeout: 2.0)
+        sleep(2)
 
         for letter in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" {
             XCTAssertTrue(sut.buttons[String(letter)].isEnabled)
